@@ -12,7 +12,7 @@
 
 ## 📱 Просмотр инструкции
 
-**GitHub Pages:** https://aleksandrsokolov.github.io/abc-xyz-dashboard-guide/ABC_XYZ_User_Guide.html
+**GitHub Pages:** https://wurik2102.github.io/abc-xyz-dashboard-guide/ABC_XYZ_User_Guide.html
 
 ## 🔄 Обновления
 
