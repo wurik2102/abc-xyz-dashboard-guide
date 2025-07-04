@@ -1,0 +1,105 @@
+FromTable	FromColumn	ToTable	ToColumn	Cardinality	Active	CrossFilterDirection
+Calendar	Date	LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	Date	Many:One	True	OneDirection
+Calendar	Start_week	LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	Date	Many:One	True	OneDirection
+Sale	Period	Calendar	Date	Many:One	True	OneDirection
+Sale	Org_IDRRef	Organizations	IDRRef	Many:One	True	OneDirection
+Sale	Customer_IDRRef	Counteragents	IDRRef	Many:One	True	OneDirection
+Stock	Period	Calendar	Date	Many:One	True	OneDirection
+Stock	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Stock сегодня	Period	LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	Date	Many:One	True	OneDirection
+Stock сегодня	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+план продаж	Менеджер	Managers	Менеджер	Many:One	True	OneDirection
+план продаж	Атрибут	Calendar	Date	Many:One	True	OneDirection
+Stock	Nomenclature_IDRRef	ДЛЯ ABC	Nomenclature_IDRRef	Many:One	True	OneDirection
+Stock сегодня	Nomenclature_IDRRef	ДЛЯ ABC	Nomenclature_IDRRef	Many:One	True	OneDirection
+ProductSalesStatistics	IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Расход комп	Date	Calendar	Date	Many:One	True	OneDirection
+Расход комп	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Расход комп	Manager_IDRRef	Managers	IDRRef	Many:One	True	OneDirection
+себестоимость	Nomenclature_IDRRef	Nomenclature	IDRRef	One:One	True	BothDirections
+себестоимость	Period	LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	Date	Many:One	True	OneDirection
+Остаток начало месяца	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Остаток начало месяца	Period	Calendar	Date	Many:One	True	OneDirection
+hovering_s	Дата	Calendar	Date	Many:One	False	OneDirection
+Задачи	dateStart	LocalDateTable_54852211-d364-4a51-9244-3fec57905403	Date	Many:One	True	OneDirection
+Задачи	deadline	LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	Date	Many:One	True	OneDirection
+Задачи	startDatePlan	LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	Date	Many:One	True	OneDirection
+Задачи	endDatePlan	LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	Date	Many:One	True	OneDirection
+Задачи	activityDate	LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	Date	Many:One	True	OneDirection
+Задачи	statusChangedDate	LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	Date	Many:One	True	OneDirection
+Задачи	Date_upload	LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	Date	Many:One	True	OneDirection
+Перекупы для kpi	Менеджер з	Managers	Менеджер	One:One	True	BothDirections
+purchase_goods_s	Дата	Calendar	Date	Many:One	True	OneDirection
+orders_supplier_s_	Дата	LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	Date	Many:One	True	OneDirection
+orders_supplier_s_	Дата отгрузки	LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	Date	Many:One	True	OneDirection
+orders_supplier_s_	Дата поступления	LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	Date	Many:One	True	OneDirection
+orders_supplier_s_	Заказ поставщику.Менеджер	Managers	Менеджер	Many:One	True	OneDirection
+Counteragents (2)	IDRRef	Counteragents	IDRRef	One:One	True	BothDirections
+Counteragents (3)	IDRRef	Counteragents	IDRRef	One:One	True	BothDirections
+purchase_goods_s	Заказ поставщику.Дата.1	LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	Date	Many:One	True	OneDirection
+purchase_goods_s	КЛЮЧ	Nomenclature	КЛЮЧ	Many:Many	True	BothDirections
+stock_today_s	дата заказа	LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	Date	Many:One	True	OneDirection
+stock_today_s	IDRRef	Nomenclature	IDRRef	Many:One	False	OneDirection
+reserve_s	Дата заполнения	LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	Date	Many:One	True	OneDirection
+reserve_s	у_кого	Managers	Менеджер	Many:One	True	OneDirection
+hovering_s	id2	Nomenclature	IDRRef	Many:One	True	BothDirections
+Sale	Менеджер доп	Managers	IDRRef	Many:One	True	OneDirection
+Sale	Номенклатура доп	Nomenclature	IDRRef	Many:One	True	OneDirection
+reserve_s	Nomenclature.IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Sale	OrderDate	LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	Date	Many:One	True	OneDirection
+Sale (2)	Date	LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	Date	Many:One	True	OneDirection
+Marriage_s	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Marriage_s	Manager_IDRRef	Managers	IDRRef	Many:One	True	OneDirection
+transfer_of_material_production_s	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+transfer_of_material_production_s	Дата	Calendar	Date	Many:One	True	OneDirection
+transfer_of_material_production_s	Manager_IDRRef	Managers	IDRRef	Many:One	True	OneDirection
+entrance_raw_material_s	DateOrder	LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	Date	Many:One	True	OneDirection
+entrance_raw_material_s	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+entrance_raw_material_s	Дата	Calendar	Date	Many:One	True	OneDirection
+production_raw_material_s	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+production_raw_material_s	Дата	Calendar	Date	Many:One	False	OneDirection
+exchange_rate_s (2)	Date	LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	Date	Many:One	True	OneDirection
+exchange_rate_s	Date	LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	Date	Many:One	True	OneDirection
+Sale (2)	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	OneDirection
+Sale (2)	Nomenclature_IDRRef	ДЛЯ ABC	Nomenclature_IDRRef	Many:One	True	OneDirection
+orders_supplier_s	Date	LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	Date	Many:One	True	OneDirection
+orders_supplier_s	DateShipment	LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	Date	Many:One	True	OneDirection
+orders_supplier_s	DateReceipt	LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	Date	Many:One	True	OneDirection
+orders_supplier_s	Nomenclature_IDRRef	Nomenclature	IDRRef	Many:One	True	BothDirections
+suppllier	IDRRef	Counteragents	IDRRef	Many:One	True	OneDirection
+orders_supplier_s	Manager_IDRRef	Managers	IDRRef	Many:One	True	OneDirection
+orders_supplier_s	Заказ\Год	stock_today_s	Заказ\Год	Many:Many	True	BothDirections
+Marriage_s	Дата	Calendar	Date	Many:One	False	OneDirection
+план продаж 25	Атрибут	LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	Date	Many:One	True	OneDirection
+план продаж 25	Менеджер	Managers	Менеджер	Many:One	True	OneDirection
+задолженность	Дата заполнения	LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	Date	Many:One	True	OneDirection
+задолженность	Дата счета	LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	Date	Many:One	True	OneDirection
+задолженность динамика	Дата заполнения	LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	Date	Many:One	True	OneDirection
+задолженность динамика	Дата счета	LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	Date	Many:One	True	OneDirection
+задолженность	Менеджер	Managers	Менеджер	Many:One	True	OneDirection
+задолженность динамика	Менеджер	Managers	Менеджер	Many:One	True	OneDirection
+df	создана	LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	Date	Many:One	True	OneDirection
+df	обновлено	LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	Date	Many:One	True	OneDirection
+df	сдвинуто	LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	Date	Many:One	True	OneDirection
+df	Дата начала	LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	Date	Many:One	True	OneDirection
+df	Дата окончания	LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	Date	Many:One	True	OneDirection
+df	Дата окончания командировки	LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	Date	Many:One	True	OneDirection
+df	Дата согласования	LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	Date	Many:One	True	OneDirection
+df	Дата последней активности	LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	Date	Many:One	True	OneDirection
+df	Date_upload	LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	Date	Many:One	True	OneDirection
+df	Дата начала командировки	Calendar	Date	Many:One	True	OneDirection
+df	ФИО	Managers	Менеджер	Many:One	True	OneDirection
+Задачи	ответсвенный	Managers	Менеджер	Many:One	True	BothDirections
+stock_today_s	Заказ\Год	purchase_goods_s	Заказ\Год	Many:Many	False	BothDirections
+Sale	RefreshDate	LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	Date	Many:One	True	OneDirection
+Категория клиентов	IDRRef	Counteragents	IDRRef	One:One	True	BothDirections
+Статус клиента	DATE_UPLOAD	LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	Date	Many:One	True	OneDirection
+комуникации	ID_COUNTERAGENT	Статус клиента	COUNTERAGENT_ID	Many:One	True	OneDirection
+комуникации	DATE	Calendar	Date	Many:One	True	OneDirection
+комуникации	UID_USER	Managers	IDRRef	Many:One	True	OneDirection
+комуникации	UID_COUNTERAGENT	Counteragents	IDRRef	Many:One	True	OneDirection
+Матрица	CODE	Nomenclature	IDRRef	Many:One	True	BothDirections
+Матрица	GUID	Managers	IDRRef	Many:One	False	OneDirection
+Задачи	closedDate	Calendar	Date	Many:One	False	OneDirection
+Задачи	changedDate	LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	Date	Many:One	True	OneDirection
+Задачи	createdDate	Calendar	Date	Many:One	True	OneDirection

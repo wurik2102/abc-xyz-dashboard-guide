@@ -1,0 +1,4 @@
+Metric	Value	Recommendation
+Total_Tables	90	Consider grouping tables by business area
+Total_Measures	154	Organize measures in folders
+Total_Relationships	104	Complex model - use role-playing dimensions

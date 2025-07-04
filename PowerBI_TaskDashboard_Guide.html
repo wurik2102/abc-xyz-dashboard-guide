@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Инструкция: Дашборд задач в Power BI</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8f9fa; color: #222; margin: 0; padding: 0; }
+    .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 32px 40px 40px 40px; border-radius: 16px; box-shadow: 0 2px 16px #0001; }
+    h1, h2, h3 { color: #2c3e50; }
+    .step { margin-bottom: 40px; }
+    .step-title { font-size: 1.3em; color: #2980b9; margin-bottom: 8px; }
+    .note { background: #f9e79f; border-left: 4px solid #f1c40f; padding: 8px 16px; margin: 16px 0; border-radius: 6px; }
+    .tip { background: #d4efdf; border-left: 4px solid #27ae60; padding: 8px 16px; margin: 16px 0; border-radius: 6px; }
+    .vis-block { background: #f4f6f7; border: 1px solid #d5dbdb; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .color-dot { display: inline-block; width: 22px; height: 22px; border-radius: 50%; margin-right: 10px; vertical-align: middle; border: 1.5px solid #bbb; }
+    .kpi { background: #f8f9fa; border: 1.5px solid #d5dbdb; border-radius: 8px; padding: 16px 28px; margin: 12px 12px 12px 0; display: inline-block; min-width: 200px; font-size: 1.1em; font-weight: bold; }
+    .matrix-table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 1.08em; }
+    .matrix-table th, .matrix-table td { border: 1.5px solid #d5dbdb; padding: 10px 14px; text-align: center; }
+    .matrix-table th { background: #ecf0f1; }
+    .legend { margin: 12px 0 0 0; font-size: 1.05em; }
+    .section-title { font-size: 1.15em; color: #34495e; margin: 24px 0 10px 0; font-weight: bold; }
+    .footer { margin-top: 40px; color: #888; font-size: 0.95em; text-align: center; }
+    hr { border: none; border-top: 2px solid #ecf0f1; margin: 36px 0; }
+    .right-panel { background: #f4f6f7; border: 1.5px solid #d5dbdb; border-radius: 12px; padding: 28px 24px; margin: 40px 0 0 0; max-width: 420px; }
+    .right-panel h3 { margin-top: 0; font-size: 1.2em; }
+    .pie-legend, .bar-legend, .heat-legend { margin-top: 16px; font-size: 1.05em; }
+    .pie-legend span, .bar-legend span, .heat-legend span { margin-right: 18px; }
+    @media (max-width: 1200px) { .container { padding: 16px 4vw; } .right-panel { max-width: 100%; } }
+    @media (max-width: 700px) { .kpi { min-width: 120px; font-size: 0.95em; padding: 10px 8px; } .matrix-table th, .matrix-table td { padding: 6px 4px; font-size: 0.95em; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Пошаговая инструкция: Дашборд задач по статусам и менеджерам в Power BI</h1>
+  <div class="note">
+    <b>Исходные данные:</b> используется файл <b>dsts/Задачи.csv</b> с колонками: <b>ID, Название, Ответственный, Дата создания, Дедлайн, Статус задачи, Описание</b> и др.<br>
+    <b>Внимание:</b> перед загрузкой данных рекомендуется привести статусы и ответственных к единому виду (см. рекомендации ниже).
+  </div>
+
+  <div class="step">
+    <div class="step-title">1. Загрузка и подготовка данных</div>
+    <ol>
+      <li>Откройте Power BI Desktop и выберите <b>Получить данные &rarr; Текст/CSV</b>. Загрузите файл <b>dsts/Задачи.csv</b>.</li>
+      <li>В Power Query проверьте и переименуйте колонки:<br>
+        <b>ID</b>, <b>Название</b> (title), <b>Ответственный</b> (ответсвенный), <b>Дата создания</b> (createdDate), <b>Дедлайн</b> (deadline), <b>Статус задачи</b> (статус задачи), <b>Описание</b> (description).</li>
+      <li>Проверьте, чтобы в колонке <b>Ответственный</b> были только ФИО, а в <b>Статус задачи</b> — только осмысленные статусы (например: В работе, На контроле, Просрочено, Ожидает ответа и т.д.).<br>
+        <span class="tip">Если есть коды (например, -353), создайте справочник статусов и замените коды на текстовые значения.</span></li>
+      <li>Добавьте вычисляемые колонки:<br>
+        <ul>
+          <li><b>Дней в статусе</b> = TODAY() - [statusChangedDate]</li>
+          <li><b>Просрочено</b> = IF([Дедлайн] &lt; TODAY() &amp;&amp; [Статус задачи] &lt;&gt; "Закрыта", "Да", "Нет")</li>
+        </ul>
+      </li>
+      <li>Нажмите <b>Закрыть и применить</b>.</li>
+    </ol>
+  </div>
+  <hr>
+  <div class="step">
+    <div class="step-title">2. Размещение визуальных блоков (точные координаты)</div>
+    <ol>
+      <li><b>Фильтры (Slicer)</b>:<br>
+        <b>x=40, y=80, width=180, height=700</b><br>
+        Менеджер, Статус задачи, Дата создания/Дедлайн (диапазон дат)
+      </li>
+      <li><b>KPI (карточки)</b>:<br>
+        <b>x=250, y=80, width=1100, height=90</b><br>
+        Всего открытых задач, Просрочено, На контроле, В работе, Без ответственного, Среднее время в статусе
+      </li>
+      <li><b>Матрица Менеджер × Статус (пример 17 строк)</b>:<br>
+        <b>x=250, y=190, width=800, height=480</b><br>
+        Строки — менеджеры, столбцы — статусы задач, значения — количество задач, условное форматирование по цвету, вертикальный скролл при большом числе менеджеров
+      </li>
+      <li><b>Круговая диаграмма по статусам (Pie Chart)</b>:<br>
+        <b>x=1080, y=190, width=280, height=240</b><br>
+        Легенда — статус задачи, значения — количество задач
+      </li>
+      <li><b>Горизонтальный bar chart "Общая картина"</b>:<br>
+        <b>x=250, y=700, width=800, height=120</b><br>
+        Ось X — количество задач, ось Y — статусы задач, цвет — по статусу
+      </li>
+      <li><b>Таблица задач (детализация)</b>:<br>
+        <b>x=250, y=860, width=1100, height=180</b><br>
+        Поля: ID, Название, Ответственный, Статус, Дата создания, Дедлайн, Дней в статусе, Просрочено
+      </li>
+    </ol>
+  </div>
+  <hr>
+  <div class="step">
+    <div class="step-title">3. Цветовая схема и рекомендации</div>
+    <div class="legend">
+      <span class="color-dot" style="background:#e74c3c"></span>Красный — критичные (просрочено)<br>
+      <span class="color-dot" style="background:#f39c12"></span>Оранжевый — на контроле<br>
+      <span class="color-dot" style="background:#27ae60"></span>Зелёный — в работе<br>
+      <span class="color-dot" style="background:#8e44ad"></span>Фиолетовый — без ответственного<br>
+      <span class="color-dot" style="background:#34495e"></span>Серый — средние значения
+    </div>
+    <div class="tip">
+      Используйте одинаковые цвета для всех визуализаций (матрица, KPI, bar chart, pie chart).
+    </div>
+  </div>
+  <hr>
+  <div class="footer">
+    Инструкция подготовлена специально для вашего проекта. <br>Если потребуется помощь с DAX-формулами или автоматизацией — обращайтесь!
+  </div>
+</div>
+</body>
+</html> 

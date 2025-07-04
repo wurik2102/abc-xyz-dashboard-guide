@@ -1,0 +1,155 @@
+Measure	Table	Category	Dashboard_Type	KPI_Type	Visualization_Suggestion
+Текущая неделя	Calendar	General	Standard Dashboard	Metric	Card
+Прошло времени	Calendar	General	Standard Dashboard	Metric	Card
+Прошло рабочего времени	Calendar	General	Standard Dashboard	Metric	Card
+кол-во.дн.продаж	Calendar	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Дней продаж	Calendar	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Дней продаж календарных	Calendar	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+начало недели	Calendar	General	Standard Dashboard	Metric	Card
+Продажи_руб	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_22_руб	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_23_руб	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_24_руб	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+LFL_24/23_прод.руб	!Меры	General	Standard Dashboard	Metric	Card
+LFL_прод.руб	!Меры	General	Standard Dashboard	Metric	Card
+Продажи_закупка	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Валовая прибыль	!Меры	Finance	Financial Performance Dashboard	Profitability KPI	Waterfall Chart + Gauge
+Валовая_п_22_руб	!Меры	General	Standard Dashboard	Metric	Card
+Валовая_п_23_руб	!Меры	General	Standard Dashboard	Metric	Card
+Валовая_п_24_руб	!Меры	General	Standard Dashboard	Metric	Card
+LFL_валов.руб	!Меры	General	Standard Dashboard	Metric	Card
+LFL_24/23_валов.руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_шт	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_22_шт	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_23_шт	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_24_шт	!Меры	General	Standard Dashboard	Metric	Card
+статус	!Меры	General	Standard Dashboard	Metric	Card
+Продажи_шт	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_23_шт	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_24_шт	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Остаток_тек_шт	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+Продажи_руб_РГ	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продажи_руб_Эк	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Остатки_руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_22_руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_23_руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_24_руб	!Меры	General	Standard Dashboard	Metric	Card
+прод.ср.дн.шт	!Меры	General	Standard Dashboard	Metric	Card
+прод.ср.дн.р	!Меры	General	Standard Dashboard	Metric	Card
+Расход_в_сборку	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+расход.ср.дн.шт	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+LFL_25/24_ост.руб	!Меры	General	Standard Dashboard	Metric	Card
+Остаток тек.руб.	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+Продано c 1 января 24	!Меры	General	Standard Dashboard	Metric	Card
+Продано прошлая неделя	!Меры	General	Standard Dashboard	Metric	Card
+Продажи_руб_i	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Валовая прибыль_i	!Меры	Finance	Financial Performance Dashboard	Profitability KPI	Waterfall Chart + Gauge
+% вып.плана_i	!Меры	General	Standard Dashboard	Metric	Card
+% выполнения продаж без движения	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+расх_в_сборку_р	!Меры	General	Standard Dashboard	Metric	Card
+Всего	!Меры	General	Standard Dashboard	Metric	Card
+Списание_руб.	!Меры	General	Standard Dashboard	Metric	Card
+Списание_шт.	!Меры	General	Standard Dashboard	Metric	Card
+прод_себ_р	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_руб_1м	!Меры	General	Standard Dashboard	Metric	Card
+Остаток старт	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+Цель(всп)	!Меры	General	Standard Dashboard	Metric	Card
+Доля в плане	!Меры	General	Standard Dashboard	Metric	Card
+Цель на месяц	!Меры	General	Standard Dashboard	Metric	Card
+передача_мат_в_произ	!Меры	General	Standard Dashboard	Metric	Card
+просроченные	!Меры	General	Standard Dashboard	Metric	Card
+Перекуп	!Меры	General	Standard Dashboard	Metric	Card
+План_продаж	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+План продаж	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Последняя_дата_продажи	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Последняя_дата_расхода	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+Последняя_дата_поступления_сырья	!Меры	General	Standard Dashboard	Metric	Card
+Последняя_дата_рас_перераб	!Меры	General	Standard Dashboard	Metric	Card
+Последняя_дата_поступления_товара	!Меры	General	Standard Dashboard	Metric	Card
+Последняя_дата_передача_мат_впроизв	!Меры	General	Standard Dashboard	Metric	Card
+Цель	!Меры	General	Standard Dashboard	Metric	Card
+%	!Меры	General	Standard Dashboard	Metric	Card
+Остаток.парт.шт	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+Дата отгрузки (план)	!Меры	General	Standard Dashboard	Metric	Card
+Дата отгрузки (факт)	!Меры	General	Standard Dashboard	Metric	Card
+Прошло дней	!Меры	General	Standard Dashboard	Metric	Card
+Остаток.парт.руб	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+резерв	!Меры	General	Standard Dashboard	Metric	Card
+Продажа руб.себ	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Перед.мат.в произ	!Меры	General	Standard Dashboard	Metric	Card
+оборач	!Меры	General	Standard Dashboard	Metric	Card
+Резерв_р	!Меры	General	Standard Dashboard	Metric	Card
+Остатко_тек_штт	!Меры	General	Standard Dashboard	Metric	Card
+свобод_ост_шт	!Меры	General	Standard Dashboard	Metric	Card
+расход общ.	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+расход_23	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+расход_24	!Меры	Cost	Cost Analysis Dashboard	Cost Control KPI	Column Chart + Tree Map
+Продажи себ.	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+обор	!Меры	General	Standard Dashboard	Metric	Card
+ср. значение продаж себ	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+ср. значение продаж	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Оборачч	!Меры	General	Standard Dashboard	Metric	Card
+Остаток на конец	!Меры	Inventory	Inventory Management Dashboard	Stock Level KPI	Bar Chart + Matrix
+Мера	!Меры	General	Standard Dashboard	Metric	Card
+ср. значение оборач	!Меры	General	Standard Dashboard	Metric	Card
+Доля % от продаж	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Доля % от валовой	!Меры	General	Standard Dashboard	Metric	Card
+Задачи в работе	!Меры	General	Standard Dashboard	Metric	Card
+Закрытые задачи (н)	!Меры	General	Standard Dashboard	Metric	Card
+Закрытые задачи	!Меры	General	Standard Dashboard	Metric	Card
+Новые задачи	!Меры	General	Standard Dashboard	Metric	Card
+Новые задачи (н)	!Меры	General	Standard Dashboard	Metric	Card
+Доля1	!Меры	General	Standard Dashboard	Metric	Card
+Продажи_25_руб	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Валовая_п_25_руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_25_руб	!Меры	General	Standard Dashboard	Metric	Card
+Остатки_25_шт	!Меры	General	Standard Dashboard	Metric	Card
+LFL_25/24_прод.руб	!Меры	General	Standard Dashboard	Metric	Card
+Продажи_25_шт	!Меры	Sales	Sales Performance Dashboard	Revenue KPI	Line Chart + Card
+Продано c 1 января 25	!Меры	General	Standard Dashboard	Metric	Card
+LFL_25/24_валов.руб	!Меры	General	Standard Dashboard	Metric	Card
+себес	!Меры	General	Standard Dashboard	Metric	Card
+расх_в_сборку_р2	!Меры	General	Standard Dashboard	Metric	Card
+Дней долга	!Меры	General	Standard Dashboard	Metric	Card
+Задолж.всего	!Меры	General	Standard Dashboard	Metric	Card
+Просрочено	!Меры	General	Standard Dashboard	Metric	Card
+Отсрочка дней	!Меры	General	Standard Dashboard	Metric	Card
+просрочка дней	!Меры	General	Standard Dashboard	Metric	Card
+Подходит срок	!Меры	General	Standard Dashboard	Metric	Card
+Наш долг	!Меры	General	Standard Dashboard	Metric	Card
+количество заказов	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+количество клиентов	!Меры	Customer	Customer Analytics Dashboard	Customer Metrics	Donut Chart + Table
+задолж.всег.д	!Меры	General	Standard Dashboard	Metric	Card
+кол-во ком	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+количество план	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+количество факт	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+План сформирован на	!Меры	General	Standard Dashboard	Metric	Card
+%_к	!Меры	General	Standard Dashboard	Metric	Card
+нелеквид	!Меры	General	Standard Dashboard	Metric	Card
+команд	!Меры	General	Standard Dashboard	Metric	Card
+Задачи	!Меры	General	Standard Dashboard	Metric	Card
+перекупы	!Меры	General	Standard Dashboard	Metric	Card
+Валовая KPI	!Меры	General	Standard Dashboard	Metric	Card
+Разница	!Меры	General	Standard Dashboard	Metric	Card
+Последнее обновление	!Меры	General	Standard Dashboard	Metric	Card
+количество_комуникаций	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+Последняя дата комуникации	!Меры	General	Standard Dashboard	Metric	Card
+кол-во дней без комуник	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+кол-во комун_25	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+кол-во комун_24	!Меры	General	Standard Dashboard	Count KPI	Card + Bar Chart
+Статус_к	!Меры	General	Standard Dashboard	Metric	Card
+в комплект	!Меры	General	Standard Dashboard	Metric	Card
+ГОТОВЫМ	!Меры	General	Standard Dashboard	Metric	Card
+Всего задач	!Меры	General	Standard Dashboard	Metric	Card
+Новые задачи за период	!Меры	General	Standard Dashboard	Metric	Card
+Закрытые задачи за период	!Меры	General	Standard Dashboard	Metric	Card
+Просроченные задачи	!Меры	General	Standard Dashboard	Metric	Card
+Задачи в работе.	!Меры	General	Standard Dashboard	Metric	Card
+Скорость закрытия	!Меры	General	Standard Dashboard	Metric	Card
+Нагрузка в день	!Меры	General	Standard Dashboard	Metric	Card
+Номер недели	!Меры	General	Standard Dashboard	Metric	Card
+Название дня	!Меры	General	Standard Dashboard	Metric	Card
+Эффективность менеджера	!Меры	General	Standard Dashboard	Metric	Card
+% вып.плана	план продаж	General	Standard Dashboard	Metric	Card
+%_РГ	план продаж	General	Standard Dashboard	Metric	Card
+%_Эк	план продаж	General	Standard Dashboard	Metric	Card

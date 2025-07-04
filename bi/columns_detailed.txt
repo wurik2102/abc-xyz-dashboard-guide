@@ -1,0 +1,844 @@
+Table	Column	DataType	Description	Hidden	SortByColumn	DataCategory	IsKey
+Sale	Period	DateTime		False			False
+Sale	Org_IDRRef	String		False			False
+Sale	Customer_IDRRef	String		False			False
+Sale	Nomenclature_IDRRef	String		False			False
+Sale	Manager_IDRRef	String		False			False
+Sale	Quantity	Double		False			False
+Sale	Price	Double		False			False
+Sale	CostPrice	Double		False			False
+Sale	Weight	Double		False			False
+Sale	Database_IDRRef	String		False			False
+Sale	sale	Double		False			False
+Sale	weeknum	Int64		False			False
+Sale	IDRRef	String		False			False
+Sale	Name	String		False			False
+Sale	Database_IDRRef2	String		False			False
+Sale	Dep_IDRRef	String		False			False
+Sale	IDRRef_y	String		False			False
+Sale	Номенклатура доп	String		False			False
+Sale	IDRRef_y.1	String		False			False
+Sale	Менеджер доп	String		False			False
+Sale	AddCost	Double		False			False
+Sale	AbaConstCost	Double		False			False
+Sale	AbaVarCost	Double		False			False
+Sale	LaborCost	Double		False			False
+Sale	OrderDate	DateTime		False			False
+Sale	OrderNumber	String		False			False
+Sale	PriceWoVAT	Double		False			False
+Sale	Откуда	String		False			False
+Sale	Себестоимость	Double		False			False
+Sale	Продажа без НДС	Double		False			False
+Sale	VAL	Double		False			False
+Sale	Продажа_руб_себ	Double		False			False
+Sale	RefreshDate	DateTime		False			False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	Date	DateTime		True		PaddedDateTableDates	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	Год	Int64		True		Years	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	№Месяца	Int64		True		MonthOfYear	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	Месяц	String		True	№Месяца	Months	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	№Квартала	Int64		True		QuarterOfYear	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	Квартал	String		True	№Квартала	Quarters	False
+DateTableTemplate_a643651f-1a9e-4791-aa32-e4bf05ef2d8e	День	Int64		True		DayOfMonth	False
+Nomenclature	IDRRef	String		False			False
+Nomenclature	Code	String		False			False
+Nomenclature	Номенклатура	String		False			False
+Nomenclature	GroupGeneral	String		False			False
+Nomenclature	Вид номенклатуры	String		False			False
+Nomenclature	Характеристика	String		False			False
+Nomenclature	Group1	String		False			False
+Nomenclature	Group2	String		False			False
+Nomenclature	RG_Type	String		False			False
+Nomenclature	RG_Subspecies	String		False			False
+Nomenclature	RG_Schema	String		False			False
+Nomenclature	RG_Coils	String		False			False
+Nomenclature	RG_TypeOfRC	String		False			False
+Nomenclature	RG_NumberOfSections	String		False			False
+Nomenclature	RG_TypeOfControl	String		False			False
+Nomenclature	RG_Thread	String		False			False
+Nomenclature	RG_Consumption	String		False			False
+Nomenclature	Database_IDRRef	String		False			False
+Nomenclature	Product Sales	Double		False			False
+Nomenclature	Cumulated Sales	Double		False			False
+Nomenclature	Cumulated Pct	Double		False			False
+Nomenclature	ABC Class	String		False			False
+Nomenclature	себест	Double		False			False
+Nomenclature	КЛЮЧ	String		False			False
+Nomenclature	DescriptionFull	String		False			False
+Nomenclature	DescriptionХFull	String		False			False
+Nomenclature	Weight	Double		False			False
+Nomenclature	GroupTypeID	String		False			False
+Nomenclature	GroupID	String		False			False
+Managers	IDRRef	String		False			False
+Managers	Менеджер	String		False			False
+Managers	Database_IDRRef	String		False			False
+Managers	Деп	String		False			False
+Managers	Менеджер з	String		False			False
+Managers	Фамилия	String		False			False
+Organizations	IDRRef	String		False			False
+Organizations	Name	String		False			False
+Counteragents	IDRRef	String		False			False
+Counteragents	Code	String		False			False
+Counteragents	Клиент	String		False			False
+Counteragents	INN	String		False			False
+Counteragents	KPP	String		False			False
+Counteragents	Country	String		False			False
+Counteragents	Database_IDRRef	String		False			False
+Counteragents	Type	String		False			False
+Counteragents	isClient.	String		False			False
+Counteragents	isSupplier.	String		False			False
+Counteragents	Marked.	String		False			False
+Counteragents	предок_IDRRef	String		False			False
+Counteragents	приемник_IDRRef	String		False			False
+Counteragents	ID_fin	String		False			False
+Counteragents	ключ	String		False			False
+Counteragents	Клиент нов	String		False			False
+Counteragents	ACTION	String		False			False
+Calendar	Date	DateTime		False			False
+Calendar	day	String		False			False
+Calendar	week	Int64		False			False
+Calendar	month	String		False	№_month		False
+Calendar	№_month	Int64		False			False
+Calendar	year	Int64		False			False
+Calendar	DateWithSales	Boolean		False			False
+Calendar	Start_week	DateTime		False			False
+Calendar	year&week	String		False			False
+Calendar	QUARTER	Int64		False			False
+Calendar	WeekdayName	String		False	WeekdaySort		False
+Calendar	WeekdaySort	Int64		False			False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	Год	Int64		True		Years	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_8ad271e7-94a5-48ec-be85-733afe880f8a	День	Int64		True		DayOfMonth	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	Год	Int64		True		Years	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_b2dfa2c6-1adc-43d5-aa47-db3206988557	День	Int64		True		DayOfMonth	False
+!Меры	Column	Int64		True			False
+Stock	Period	DateTime		False			False
+Stock	Nomenclature_IDRRef	String		False			False
+Stock	Room	String		False			False
+Stock	Quantity	Double		False			False
+Stock	Database_IDRRef	String		False			False
+Stock	Name	String		False			False
+Stock	Storages_IDRRef	String		False			False
+Stock	Cost	Double		False			False
+Stock	Сумма_руб	Double		False			False
+Stock сегодня	Period	DateTime		False			False
+Stock сегодня	Nomenclature_IDRRef	String		False			False
+Stock сегодня	Room	String		False			False
+Stock сегодня	Quantity	Double		False			False
+Stock сегодня	Database_IDRRef	String		False			False
+Stock сегодня	Склад	String		False			False
+Stock сегодня	Storages_IDRRef	String		False			False
+Stock сегодня	Cost	Double		False			False
+Stock сегодня	Сумма_р	Double		False			False
+Stock сегодня	Столбец	String		False			False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	Год	Int64		True		Years	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_79d93c86-51a3-4436-9697-4242c19c4c5e	День	Int64		True		DayOfMonth	False
+план продаж	Менеджер	String		False			False
+план продаж	Атрибут	DateTime		False			False
+план продаж	Значение	Int64		False			False
+план продаж	Доля	Double		False			False
+ДЛЯ ABC	Nomenclature_IDRRef	String		False			False
+ДЛЯ ABC	выручка	Double		False			False
+ProductSalesByDate	weeknum	Int64		False			False
+ProductSalesByDate	IDRRef	String		False			False
+ProductSalesByDate	DailySales	Double		False			False
+ProductSalesStatistics	IDRRef	String		False			False
+ProductSalesStatistics	AverageSales	Double		False			False
+ProductSalesStatistics	StandardDeviation	Double		False			False
+ProductSalesStatistics	CV	Double		False			False
+ProductSalesStatistics	XYZ Class	String		False			False
+Расход комп	IDRRef	String		False			False
+Расход комп	Database_IDRRef	String		False			False
+Расход комп	Date	DateTime		False			False
+Расход комп	Number	String		False			False
+Расход комп	Nomenclature_IDRRef	String		False			False
+Расход комп	Manager_IDRRef	String		False			False
+Расход комп	Name	String		False			False
+Расход комп	Расход	Double		False			False
+Расход комп	Поступление	Double		False			False
+Расход комп	себ	Double		False			False
+Расход комп	Расход_в_сборку_руб	Double		False			False
+Расход комп	ssumcost	Double		False			False
+Расход комп	FinalCost	Double		False			False
+hovering_s	ID	String		False			False
+hovering_s	Дата	DateTime		False			False
+hovering_s	id2	String		False			False
+себестоимость	Nomenclature_IDRRef	String		False			False
+себестоимость	Cost	Double		False			False
+себестоимость	Period	DateTime		False			False
+себестоимость	Database_IDRRef	String		False			False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	Год	Int64		True		Years	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_fb4900c6-4db3-42ad-bd05-68476dec9385	День	Int64		True		DayOfMonth	False
+Marriage_s	Дата	DateTime		False			False
+Marriage_s	Nomenclature_IDRRef	String		False			False
+Marriage_s	Manager_IDRRef	String		False			False
+Marriage_s	Quantity	Double		False			False
+Marriage_s	CostWoVAT	Double		False			False
+Остаток начало месяца	Period	DateTime		False			False
+Остаток начало месяца	Nomenclature_IDRRef	String		False			False
+Остаток начало месяца	Room	String		False			False
+Остаток начало месяца	Storages_IDRRef	String		False			False
+Остаток начало месяца	Quantity	Double		False			False
+Остаток начало месяца	Database_IDRRef	String		False			False
+Остаток начало месяца	Name	String		False			False
+Остаток начало месяца	Cost	Double		False			False
+Остаток начало месяца	Сумма_руб	Double		False			False
+transfer_of_material_production_s	Себес	Double		False			False
+transfer_of_material_production_s	сум.в произ.себ	Double		False			False
+transfer_of_material_production_s	IDRRef	String		False			False
+transfer_of_material_production_s	Number	String		False			False
+transfer_of_material_production_s	Дата	DateTime		False			False
+transfer_of_material_production_s	Manager_IDRRef	String		False			False
+transfer_of_material_production_s	Nomenclature_IDRRef	String		False			False
+transfer_of_material_production_s	Quantity	Double		False			False
+Задачи	id	Int64		False			False
+Задачи	title	String		False			False
+Задачи	description	String		False			False
+Задачи	priority	String		False			False
+Задачи	responsibleId	Int64		False			False
+Задачи	dateStart	DateTime		False			False
+Задачи	durationFact	String		False			False
+Задачи	timeEstimate	String		False			False
+Задачи	replicate	String		False			False
+Задачи	deadline	DateTime		False			False
+Задачи	startDatePlan	DateTime		False			False
+Задачи	endDatePlan	DateTime		False			False
+Задачи	createdBy	String		False			False
+Задачи	createdDate	DateTime		False			False
+Задачи	changedBy	String		False			False
+Задачи	changedDate	DateTime		False			False
+Задачи	statusChangedBy	String		False			False
+Задачи	closedBy	String		False			False
+Задачи	closedDate	DateTime		False			False
+Задачи	activityDate	DateTime		False			False
+Задачи	parentId	String		False			False
+Задачи	forumTopicId	String		False			False
+Задачи	multitask	String		False			False
+Задачи	forkedByTemplateId	String		False			False
+Задачи	stageId	String		False			False
+Задачи	descriptionInBbcode	String		False			False
+Задачи	status	String		False			False
+Задачи	statusChangedDate	DateTime		False			False
+Задачи	durationPlan	String		False			False
+Задачи	durationType	String		False			False
+Задачи	groupId	String		False			False
+Задачи	создатель	String		False			False
+Задачи	ответсвенный	String		False			False
+Задачи	subStatus	String		False			False
+Задачи	Date_upload	DateTime		False			False
+Задачи	статус задачи	String		False			False
+Задачи	Столбец	Int64		False			False
+Задачи	Пользовательский	Int64		False			False
+Задачи	ufCrmTask	String		False			False
+Задачи	Фамилия	String		False			False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	Год	Int64		True		Years	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_54852211-d364-4a51-9244-3fec57905403	День	Int64		True		DayOfMonth	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	Год	Int64		True		Years	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_aeee1679-9c27-4410-b397-8fc8b6bf136f	День	Int64		True		DayOfMonth	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	Год	Int64		True		Years	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_14924cdc-622b-4058-ac99-9bfb3615afe3	День	Int64		True		DayOfMonth	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	Год	Int64		True		Years	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_51dd36b1-6632-4336-834b-c482dec3f6f6	День	Int64		True		DayOfMonth	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	Год	Int64		True		Years	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_48c432d9-6432-4ff5-ab4f-28f4e4b5f8c4	День	Int64		True		DayOfMonth	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	Год	Int64		True		Years	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_a6d9da86-cdf3-4bd7-9efd-a4469becacda	День	Int64		True		DayOfMonth	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	Год	Int64		True		Years	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_27764d75-dcca-4e9f-906d-42605ad2e371	День	Int64		True		DayOfMonth	False
+Перекупы для kpi	Менеджер з	String		False			False
+Перекупы для kpi	количество	Double		False			False
+entrance_raw_material_s	IDRRef	String		False			False
+entrance_raw_material_s	Number	String		False			False
+entrance_raw_material_s	Дата	DateTime		False			False
+entrance_raw_material_s	Nomenclature_IDRRef	String		False			False
+entrance_raw_material_s	Storage_IDRRef	String		False			False
+entrance_raw_material_s	NumberOrder	String		False			False
+entrance_raw_material_s	DateOrder	DateTime		False			False
+entrance_raw_material_s	Quantity	Double		False			False
+production_raw_material_s	IDRRef	String		False			False
+production_raw_material_s	Number	String		False			False
+production_raw_material_s	Дата	DateTime		False			False
+production_raw_material_s	Nomenclature_IDRRef	String		False			False
+production_raw_material_s	Storage_IDRRef	String		False			False
+production_raw_material_s	Quantity	Double		False			False
+production_raw_material_s	Price	Double		False			False
+production_raw_material_s	Amount	Double		False			False
+purchase_goods_s	Поставщик	String		False			False
+purchase_goods_s	Дата	DateTime		False			False
+purchase_goods_s	Номенклатура	String		False			False
+purchase_goods_s	Характеристика	String		False			False
+purchase_goods_s	Склад	String		False			False
+purchase_goods_s	Списать на расходы	String		False			False
+purchase_goods_s	Количество (в единицах хранения)	Double		False			False
+purchase_goods_s	Цена	Double		False			False
+purchase_goods_s	Приобретение товаров и услуг.Валюта	String		False			False
+purchase_goods_s	Сумма с НДС	Double		False			False
+purchase_goods_s	КЛЮЧ	String		False			False
+purchase_goods_s	Год	String		False			False
+purchase_goods_s	Заказ\Год	String		False			False
+purchase_goods_s	курс	String		False			False
+purchase_goods_s	Сум руб	Double		False			False
+purchase_goods_s	Заказ поставщику.Номер	String		False			False
+purchase_goods_s	Заказ поставщику.Дата.1	DateTime		False			False
+exchange_rate_s	Курс	Double		False			False
+exchange_rate_s	Date	DateTime		False			False
+exchange_rate_s	Name	String		False			False
+exchange_rate_s	Currency_Code	Int64		False			False
+orders_supplier_s	Год	String		False			False
+orders_supplier_s	Состояние	String		False			False
+orders_supplier_s	IDRRef	String		False			False
+orders_supplier_s	Org_IDRRef	String		False			False
+orders_supplier_s	Number	String		False			False
+orders_supplier_s	Date	DateTime		False			False
+orders_supplier_s	Manager_IDRRef	String		False			False
+orders_supplier_s	DateShipment	DateTime		False			False
+orders_supplier_s	DateReceipt	DateTime		False			False
+orders_supplier_s	Comments	String		False			False
+orders_supplier_s	Nomenclature_IDRRef	String		False			False
+orders_supplier_s	Currency_Сode	Int64		False			False
+orders_supplier_s	Storages_IDRRef	String		False			False
+orders_supplier_s	Dep_IDRRef	String		False			False
+orders_supplier_s	EO_IDRRef	String		False			False
+orders_supplier_s	Supplier_IDRRef	String		False			False
+orders_supplier_s	Status	String		False			False
+orders_supplier_s	Quantity	Double		False			False
+orders_supplier_s	Price	Double		False			False
+orders_supplier_s	Amount	Double		False			False
+orders_supplier_s	Database_IDRRef	String		False			False
+orders_supplier_s	Proforma	String		False			False
+orders_supplier_s	DeliveryType	String		False			False
+orders_supplier_s	SID	String		False			False
+orders_supplier_s	ActualSupplier_IDRRef	String		False			False
+orders_supplier_s	PriceM	Double		False			False
+orders_supplier_s	CurrencyM_Сode	String		False			False
+orders_supplier_s	CostLS	Double		False			False
+orders_supplier_s	Заказ\Год	String		False			False
+orders_supplier_s	Курс	Double		False			False
+orders_supplier_s	Сумма в руб	Double		False			False
+orders_supplier_s	Country	String		False			False
+orders_supplier_s	конкурент	String		False			False
+orders_supplier_s	Condition	String		False			False
+orders_supplier_s	NomenclatureSupplierIDRRef	String		False			False
+exchange_rate_s (2)	Курс	String		False			False
+exchange_rate_s (2)	Date	DateTime		False			False
+exchange_rate_s (2)	Name	String		False			False
+exchange_rate_s (2)	Multiplicity	Double		False			False
+order_status_s	Сведено	String		False			False
+order_status_s	Состояние	String		False			False
+suppllier	IDRRef	String		False			False
+suppllier	Country	String		False			False
+orders_supplier_s_	Заказ поставщику.Номер	String		False			False
+orders_supplier_s_	Заказ поставщику.Менеджер	String		False			False
+orders_supplier_s_	Дата	DateTime		False			False
+orders_supplier_s_	Дата отгрузки	DateTime		False			False
+orders_supplier_s_	Дата поступления	DateTime		False			False
+orders_supplier_s_	Заказ поставщику.Комментарий	String		False			False
+orders_supplier_s_	Номенклатура	String		False			False
+orders_supplier_s_	Характеристика	String		False			False
+orders_supplier_s_	Заказ поставщику.Валюта	String		False			False
+orders_supplier_s_	Склад	String		False			False
+orders_supplier_s_	Подразделение-получатель	String		False			False
+orders_supplier_s_	Заказ поставщику.Хоз. операция	String		False			False
+orders_supplier_s_	Заказ поставщику.Поставщик, Конкурент.1	String		False			False
+orders_supplier_s_	Заказ поставщику.Поставщик, Конкурент.2	String		False			False
+orders_supplier_s_	Заказ поставщику.Статус	String		False			False
+orders_supplier_s_	Отменено	String		False			False
+orders_supplier_s_	Количество (в единицах хранения)	Double		False			False
+orders_supplier_s_	Цена	Double		False			False
+orders_supplier_s_	Сумма с НДС	Double		False			False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	Год	Int64		True		Years	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_75a5b6df-ed0d-4d3c-a485-116560e7d083	День	Int64		True		DayOfMonth	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	Год	Int64		True		Years	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_c589659a-0ecf-4dc3-a449-e1e8cc3ce4fa	День	Int64		True		DayOfMonth	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	Год	Int64		True		Years	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_5d81064c-4898-4e39-96fa-62c57818c499	День	Int64		True		DayOfMonth	False
+Counteragents (2)	IDRRef	String		False			False
+Counteragents (2)	Code	String		False			False
+Counteragents (2)	Клиент	String		False			False
+Counteragents (2)	INN	String		False			False
+Counteragents (2)	KPP	String		False			False
+Counteragents (2)	Country	String		False			False
+Counteragents (2)	Database_IDRRef	String		False			False
+Counteragents (2)	Type	String		False			False
+Counteragents (2)	предок_IDRRef	String		False			False
+Counteragents (2)	приемник_IDRRef	String		False			False
+Counteragents (2)	isClient.	String		False			False
+Counteragents (2)	isSupplier.	String		False			False
+Counteragents (2)	Marked.	String		False			False
+Counteragents (3)	IDRRef	String		False			False
+Counteragents (3)	Code	String		False			False
+Counteragents (3)	Клиент	String		False			False
+Counteragents (3)	INN	String		False			False
+Counteragents (3)	KPP	String		False			False
+Counteragents (3)	Country	String		False			False
+Counteragents (3)	Database_IDRRef	String		False			False
+Counteragents (3)	Type	String		False			False
+Counteragents (3)	предок_IDRRef	String		False			False
+Counteragents (3)	приемник_IDRRef	String		False			False
+Counteragents (3)	isClient.	String		False			False
+Counteragents (3)	isSupplier.	String		False			False
+Counteragents (3)	Marked.	String		False			False
+Counteragents (3)	Counteragents (2).приемник_IDRRef	String		False			False
+Counteragents (3)	Counteragents (2).приемник_IDRRef.1	String		False			False
+Counteragents (3)	ID_fin	String		False			False
+Counteragents (3)	Клиент нов	String		False			False
+Counteragents (3)	ключ	String		False			False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	Год	Int64		True		Years	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_636b38e9-5591-4d07-89cd-3b240f51ef28	День	Int64		True		DayOfMonth	False
+stock_today_s	Номенклатура	String		False			False
+stock_today_s	Характеристика	String		False			False
+stock_today_s	Склад	String		False			False
+stock_today_s	дата заказа	DateTime		False			False
+stock_today_s	Количество	Double		False			False
+stock_today_s	Себестоимость	Double		False			False
+stock_today_s	КЛЮЧ	String		False			False
+stock_today_s	Заказ\Год	String		False			False
+stock_today_s	IDRRef	String		False			False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	Год	Int64		True		Years	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_e333d582-edb5-4249-88dc-d8d053871a38	День	Int64		True		DayOfMonth	False
+reserve_s	Склад	String		False			False
+reserve_s	Получатель	String		False			False
+reserve_s	Документ отгрузки	String		False			False
+reserve_s	Номенклатура	String		False			False
+reserve_s	Характеристика	String		False			False
+reserve_s	Назначение	String		False			False
+reserve_s	В резерве	Double		False			False
+reserve_s	у_кого	String		False			False
+reserve_s	Дата заполнения	DateTime		False			False
+reserve_s	КЛЮЧ	String		False			False
+reserve_s	Nomenclature.IDRRef	String		False			False
+reserve_s	Nomenclature.Cost	Double		False			False
+reserve_s	резерв.р	Double		False			False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	Год	Int64		True		Years	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_c840215c-5e73-45e5-a40d-ab901ee5e918	День	Int64		True		DayOfMonth	False
+df -номенклатура	IDRRef_x	String		False			False
+df -номенклатура	IDRRef_y	String		False			False
+df - менеджеры	IDRRef_x	String		False			False
+df - менеджеры	IDRRef_y	String		False			False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	Год	Int64		True		Years	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_d790715f-be7a-4677-8c7e-b6b7e129d649	День	Int64		True		DayOfMonth	False
+Sale (2)	Date	DateTime		False			False
+Sale (2)	Org_IDRRef	String		False			False
+Sale (2)	Manager_IDRRef	String		False			False
+Sale (2)	Nomenclature_IDRRef	String		False			False
+Sale (2)	Quantity	Double		False			False
+Sale (2)	Database_IDRRef	String		False			False
+Sale (2)	CostWoVAT	Double		False			False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	Год	Int64		True		Years	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_be7dd85d-a493-4370-81bd-915f0154cb1f	День	Int64		True		DayOfMonth	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	Год	Int64		True		Years	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_cf043054-e952-4ba6-b1a2-bff46b30275f	День	Int64		True		DayOfMonth	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	Год	Int64		True		Years	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_fb5dd59d-1d47-4441-997b-e7a85de1d4f4	День	Int64		True		DayOfMonth	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	Год	Int64		True		Years	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_6e7e4f2c-ab4e-4784-8cec-c8aa2fa44eff	День	Int64		True		DayOfMonth	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	Год	Int64		True		Years	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_8f608eeb-2fa0-4a6b-87ef-c8f21c31cdb4	День	Int64		True		DayOfMonth	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	Год	Int64		True		Years	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_40c4fd74-6144-49d4-85b2-e9ebf7717bec	День	Int64		True		DayOfMonth	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	Год	Int64		True		Years	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_83ab9852-c5e5-4643-8876-5605ca0ffb5e	День	Int64		True		DayOfMonth	False
+план продаж 25	Менеджер	String		False			False
+план продаж 25	Атрибут	DateTime		False			False
+план продаж 25	Значение	Int64		False			False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	Год	Int64		True		Years	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_44aaa76e-93e4-4f0b-81e6-b741c2f9b1da	День	Int64		True		DayOfMonth	False
+задолженность	Клиент	String		False			False
+задолженность	Менеджер	String		False			False
+задолженность	Объект расчетов	String		False			False
+задолженность	Расчетный/плановый документ	String		False			False
+задолженность	Группировка долга	String		False			False
+задолженность	Валюта	String		False			False
+задолженность	Всего	Double		False			False
+задолженность	Просрочено	Double		False			False
+задолженность	Дней долга	Int64		False			False
+задолженность	Отсрочка, дней	Double		False			False
+задолженность	Просрочено, дней	Int64		False			False
+задолженность	Просрочено.1	Double		False			False
+задолженность	Подходит срок	Double		False			False
+задолженность	Наш долг	Double		False			False
+задолженность	где	String		False			False
+задолженность	Дата заполнения	DateTime		False			False
+задолженность	Счет на оплату	String		False			False
+задолженность	Дата счета	DateTime		False			False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	Год	Int64		True		Years	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_383ddf2b-399a-4aeb-9013-13454e7b3b27	День	Int64		True		DayOfMonth	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	Год	Int64		True		Years	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_c6ee2619-82ae-4665-9e4a-0fbefa8f26a4	День	Int64		True		DayOfMonth	False
+задолженность динамика	Клиент	String		False			False
+задолженность динамика	Менеджер	String		False			False
+задолженность динамика	Объект расчетов	String		False			False
+задолженность динамика	Расчетный/плановый документ	String		False			False
+задолженность динамика	Группировка долга	String		False			False
+задолженность динамика	Валюта	String		False			False
+задолженность динамика	Всего	Double		False			False
+задолженность динамика	Просрочено	Double		False			False
+задолженность динамика	Дней долга	Int64		False			False
+задолженность динамика	Отсрочка, дней	Double		False			False
+задолженность динамика	Просрочено, дней	Int64		False			False
+задолженность динамика	Просрочено.1	Double		False			False
+задолженность динамика	Подходит срок	Double		False			False
+задолженность динамика	Наш долг	Double		False			False
+задолженность динамика	где	String		False			False
+задолженность динамика	Дата заполнения	DateTime		False			False
+задолженность динамика	Счет на оплату	String		False			False
+задолженность динамика	Дата счета	DateTime		False			False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	Год	Int64		True		Years	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_ce0133e8-159a-4ec3-9e3b-6cd63922749f	День	Int64		True		DayOfMonth	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	Год	Int64		True		Years	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_ced0f0cb-df5a-47cb-bda5-4bb6d3beb628	День	Int64		True		DayOfMonth	False
+df	id	Int64		False			False
+df	xmlId	String		False			False
+df	title	String		False			False
+df	createdBy	Int64		False			False
+df	updatedBy	Int64		False			False
+df	movedBy	Int64		False			False
+df	создана	DateTime		False			False
+df	обновлено	DateTime		False			False
+df	сдвинуто	DateTime		False			False
+df	categoryId	Int64		False			False
+df	opened	String		False			False
+df	stageId	String		False			False
+df	previousStageId	String		False			False
+df	Дата начала	DateTime		False			False
+df	Дата окончания	DateTime		False			False
+df	contactId	Int64		False			False
+df	opportunity	Int64		False			False
+df	isManualOpportunity	String		False			False
+df	taxValue	Int64		False			False
+df	currencyId	String		False			False
+df	opportunityAccount	Int64		False			False
+df	taxValueAccount	Int64		False			False
+df	accountCurrencyId	String		False			False
+df	mycompanyId	Int64		False			False
+df	sourceId	String		False			False
+df	sourceDescription	String		False			False
+df	webformId	Int64		False			False
+df	Дата начала командировки	DateTime		False			False
+df	Дата окончания командировки	DateTime		False			False
+df	ufCrm5_1725278469	String		False			False
+df	ufCrm5_1725449183	String		False			False
+df	ufCrm5_1725453079	String		False			False
+df	ufCrm5_1731301045	String		False			False
+df	ufCrm5_1624887141	String		False			False
+df	ufCrm5_1624887179	String		False			False
+df	ufCrm5_1624887200	String		False			False
+df	ufCrm5_1624887734	String		False			False
+df	ufCrm5_1624961363	String		False			False
+df	Дата согласования	DateTime		False			False
+df	ufCrm5_1624961447	String		False			False
+df	ufCrm5_1624961499	String		False			False
+df	assignedById	Int64		False			False
+df	lastActivityBy	Int64		False			False
+df	Дата последней активности	DateTime		False			False
+df	parentId2	String		False			False
+df	utmSource	String		False			False
+df	utmMedium	String		False			False
+df	utmCampaign	String		False			False
+df	utmContent	String		False			False
+df	utmTerm	String		False			False
+df	observers	String		False			False
+df	contactIds	String		False			False
+df	entityTypeId	Int64		False			False
+df	Date_upload	DateTime		False			False
+df	ФИО	String		False			False
+df	Атрибут	String		False			False
+df	Значение	Int64		False			False
+df	Клиент	String		False			False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	Год	Int64		True		Years	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_9725c965-31f2-41e8-b51b-84a26dd201ed	День	Int64		True		DayOfMonth	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	Год	Int64		True		Years	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_2786abb0-bd87-4a02-98e2-7ffcfda39382	День	Int64		True		DayOfMonth	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	Год	Int64		True		Years	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_6fcdbca3-9755-4401-a6f8-fc14250bbe17	День	Int64		True		DayOfMonth	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	Год	Int64		True		Years	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_a91e48d1-db29-453c-b330-477d17837971	День	Int64		True		DayOfMonth	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	Год	Int64		True		Years	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_4a25db86-856b-43a6-b42a-162eb44905f0	День	Int64		True		DayOfMonth	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	Год	Int64		True		Years	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_b7e9ea3f-bc7b-4d4d-8ab9-01ed44779854	День	Int64		True		DayOfMonth	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	Год	Int64		True		Years	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_06bfb750-84ad-4e43-8c6c-9846aeca4810	День	Int64		True		DayOfMonth	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	Год	Int64		True		Years	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_28b3286d-0416-4c5a-9701-44d4d70814a7	День	Int64		True		DayOfMonth	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	Год	Int64		True		Years	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_cdad7acd-1c69-4e17-a0bb-85f22f7d4e4d	День	Int64		True		DayOfMonth	False
+люди	ID	Int64		False			False
+люди	NAME	String		False			False
+люди	LAST_NAME	String		False			False
+люди	SECOND_NAME	String		False			False
+люди	ACTIVE	String		False			False
+люди	ФИО	String		False			False
+Клиенты	ID	Int64		False			False
+Клиенты	TITLE	String		False			False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	Год	Int64		True		Years	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_5b6b3bd2-2f1a-429c-9642-810017de8a68	День	Int64		True		DayOfMonth	False
+Категория клиентов	IDRRef	String		False			False
+Категория клиентов	Description	String		False			False
+Категория клиентов	IndustryCategory	String		False			False
+Категория клиентов	SubCategory	String		False			False
+Категория клиентов	SelectedActivity	String		False			False
+Категория клиентов	Priority	String		False			False
+Статус клиента	DATE_UPLOAD	DateTime		False			False
+Статус клиента	COUNTERAGENT_UID	String		False			False
+Статус клиента	ACTION	String		False			False
+Статус клиента	COUNTERAGENT_ID	Int64		False			False
+Статус клиента	COUNTERAGENT_NAME	String		False			False
+Статус клиента	SMART_ID	Int64		False			False
+Статус клиента	HOLDING_ID	Int64		False			False
+Статус клиента	MONTHS_NO_SALES_HOL	Int64		False			False
+Статус клиента	LFL_CUR_HOL	Double		False			False
+Статус клиента	LFL_PREV_HOL	Double		False			False
+Статус клиента	LFL_3M_HOL	Double		False			False
+Статус клиента	SALES_CUR_YEAR_HOL	Double		False			False
+Статус клиента	SALES_PREV_YEAR_HOL	Double		False			False
+Статус клиента	SALES_PPREV_YEAR_HOL	Double		False			False
+Статус клиента	MONTHS_NO_SALES_CO	Int64		False			False
+Статус клиента	LFL_CUR_CO	Double		False			False
+Статус клиента	LFL_PREV_CO	Double		False			False
+Статус клиента	LFL_3M_CO	Double		False			False
+Статус клиента	SALES_CUR_YEAR_CO	Double		False			False
+Статус клиента	SALES_PREV_YEAR_CO	Double		False			False
+Статус клиента	SALES_PPREV_YEAR_CO	Double		False			False
+Статус клиента	RESPONSIBLE_UID	String		False			False
+Статус клиента	STAGE_ID	String		False			False
+Статус клиента	CATEGORY_BALANCE	String		False			False
+Статус клиента	LFL_2Y_HOL	Double		False			False
+Статус клиента	LFL_2Y_CO	Double		False			False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	Год	Int64		True		Years	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_2f85b20f-3f88-4712-8041-953013c9bd35	День	Int64		True		DayOfMonth	False
+комуникации	с кем	String		False			False
+комуникации	ENTITY_TYPE	String		False			False
+комуникации	ENTITY_ID	Int64		False			False
+комуникации	DATE	DateTime		False			False
+комуникации	DIRECTION	Int64		False			False
+комуникации	STATUS_COUNTERAGENT	String		False			False
+комуникации	UID_COUNTERAGENT	String		False			False
+комуникации	ID_COUNTERAGENT	Int64		False			False
+комуникации	UID_FL	String		False			False
+комуникации	ID_FL	Int64		False			False
+комуникации	UID_USER	String		False			False
+комуникации	ID_USER	Int64		False			False
+комуникации	Статус	String		False			False
+Матрица	id_x	String		False			False
+Матрица	title_1	String		False			False
+Матрица	assignedById_1	String		False			False
+Матрица	createdTime_1	String		False			False
+Матрица	updatedTime_1	String		False			False
+Матрица	productName	String		False			False
+Матрица	CODE	String		False			False
+Матрица	NAME	String		False			False
+Матрица	статус	String		False			False
+Матрица	GUID	String		False			False
+Матрица	ID	String		False			False
+Матрица	Date_upload	String		False			False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	Date	DateTime		True		PaddedDateTableDates	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	Год	Int64		True		Years	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	№Месяца	Int64		True		MonthOfYear	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	Месяц	String		True	№Месяца	Months	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	№Квартала	Int64		True		QuarterOfYear	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	Квартал	String		True	№Квартала	Quarters	False
+LocalDateTable_31468528-b100-4a28-9bbd-d23c83c0efe5	День	Int64		True		DayOfMonth	False

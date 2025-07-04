@@ -1,0 +1,155 @@
+Table	Measure	Expression	Format	Description	Hidden
+Calendar	Текущая неделя	WEEKNUM(TODAY(),2)	0		False
+Calendar	Прошло времени	 VAR a = DISTINCTCOUNT('Calendar'[Date]) VAR b = DAY(TODAY()) return DIVIDE(b,a)	0%;-0%;0%		False
+Calendar	Прошло рабочего времени	 VAR t1 = STARTOFMONTH('Calendar'[Date]) VAR t2 = ENDOFMONTH('Calendar'[Date]) VAR a = NETWORKDAYS(t1,t2,1) VAR t3 = STARTOFMONTH('Calendar'[Date]) VAR t4 = TODAY() VAR b = NETWORKDAYS(t3,t4,1) return DIVIDE(b,a)	0%;-0%;0%		False
+Calendar	кол-во.дн.продаж	CALCULATE(DISTINCTCOUNT('Sale'[Period]),'Sale'[Quantity] > 0)	0		False
+Calendar	Дней продаж	DISTINCTCOUNT('Sale'[Period])	0		False
+Calendar	Дней продаж календарных	DATEDIFF(DATE(2023,01,01),TODAY(),DAY)	0		False
+Calendar	начало недели	TODAY()-WEEKDAY(TODAY(),2)-7	General Date		False
+!Меры	Продажи_руб	SUM(Sale[sale])	#,0		False
+!Меры	Продажи_22_руб	CALCULATE('!Меры'[Продажи_руб],FILTER('Calendar','Calendar'[year] = 2022))	#,0		False
+!Меры	Продажи_23_руб	CALCULATE('!Меры'[Продажи_руб],FILTER('Calendar','Calendar'[year] = 2023))	#,0		False
+!Меры	Продажи_24_руб	CALCULATE('!Меры'[Продажи_руб],FILTER('Calendar','Calendar'[year] = 2024))	#,0		False
+!Меры	LFL_24/23_прод.руб	if('!Меры'[Продажи_23_руб] = BLANK(),100,DIVIDE('!Меры'[Продажи_24_руб],'!Меры'[Продажи_23_руб]))-1	0%;-0%;0%		False
+!Меры	LFL_прод.руб	(DIVIDE('!Меры'[Продажи_23_руб],'!Меры'[Продажи_22_руб]))-1	0%;-0%;0%		False
+!Меры	Продажи_закупка	SUM(Sale[CostPrice])+SUM(Sale[AddCost])+SUM(Sale[AbaConstCost])+SUM(Sale[AbaVarCost])+SUM(Sale[LaborCost])			False
+!Меры	Валовая прибыль	('!Меры'[Продажи_руб]*0.83) - ('!Меры'[Продажи_закупка]) 			False
+!Меры	Валовая_п_22_руб	CALCULATE('!Меры'[Валовая прибыль],FILTER('Calendar','Calendar'[year] = 2022))	#,0		False
+!Меры	Валовая_п_23_руб	CALCULATE('!Меры'[Валовая прибыль],FILTER('Calendar','Calendar'[year] = 2023))	#,0		False
+!Меры	Валовая_п_24_руб	CALCULATE('!Меры'[Валовая прибыль],FILTER('Calendar','Calendar'[year] = 2024))	#,0		False
+!Меры	LFL_валов.руб	(DIVIDE('!Меры'[Валовая_п_23_руб],'!Меры'[Валовая_п_22_руб]))-1	0%;-0%;0%		False
+!Меры	LFL_24/23_валов.руб	(DIVIDE('!Меры'[Валовая_п_24_руб],'!Меры'[Валовая_п_23_руб]))-1	0%;-0%;0%		False
+!Меры	Остатки_шт	SUM(Stock[Quantity])	#,0		False
+!Меры	Остатки_22_шт	CALCULATE('!Меры'[Остатки_шт],FILTER('Calendar','Calendar'[year] = 2022))	#,0		False
+!Меры	Остатки_23_шт	CALCULATE('!Меры'[Остатки_шт],FILTER('Calendar','Calendar'[year] = 2023))	#,0		False
+!Меры	Остатки_24_шт	CALCULATE('!Меры'[Остатки_шт],FILTER('Calendar','Calendar'[year] = 2024))	#,0		False
+!Меры	статус	IF(AND('!Меры'[Продажи_24_руб]=BLANK(),'!Меры'[Продажи_23_руб] = BLANK()),1,0)	0		False
+!Меры	Продажи_шт	SUM(Sale[Quantity])			False
+!Меры	Продажи_23_шт	CALCULATE('!Меры'[Продажи_шт],FILTER('Calendar','Calendar'[year] = 2023))	#,0		False
+!Меры	Продажи_24_шт	CALCULATE('!Меры'[Продажи_шт],FILTER('Calendar','Calendar'[year] = 2024))	#,0		False
+!Меры	Остаток_тек_шт	SUM('Stock сегодня'[Quantity])	#,0		False
+!Меры	Продажи_руб_РГ	CALCULATE('!Меры'[Продажи_руб],FILTER('Sale','Sale'[Database_IDRRef] = "51f4eefb-9561-4f02-bc50-ac50a9a0fa00"))	#,0		False
+!Меры	Продажи_руб_Эк	CALCULATE('!Меры'[Продажи_руб],FILTER('Sale','Sale'[Database_IDRRef] = "3bcfb80f-c01b-4bef-b48a-5d790691a733"))	#,0		False
+!Меры	Остатки_руб	SUM(Stock[Сумма_руб])	#,0		False
+!Меры	Остатки_22_руб	CALCULATE('!Меры'[Остатки_руб],FILTER('Calendar','Calendar'[year] = 2022))	#,0		False
+!Меры	Остатки_23_руб	CALCULATE('!Меры'[Остатки_руб],FILTER('Calendar','Calendar'[year] = 2023))	#,0		False
+!Меры	Остатки_24_руб	CALCULATE('!Меры'[Остатки_руб],FILTER('Calendar','Calendar'[year] = 2024))	#,0		False
+!Меры	прод.ср.дн.шт	DIVIDE('!Меры'[Продажи_шт],DISTINCTCOUNT('Sale'[Period]))	#,0		False
+!Меры	прод.ср.дн.р	DIVIDE('!Меры'[Продажи_руб],DISTINCTCOUNT('Sale'[Period]))			False
+!Меры	Расход_в_сборку	sum('Расход комп'[Расход])			False
+!Меры	расход.ср.дн.шт	DIVIDE('!Меры'[Расход_в_сборку],DISTINCTCOUNT('Расход комп'[Date]))			False
+!Меры	LFL_25/24_ост.руб	('!Меры'[Остатки_25_руб]/'!Меры'[Остатки_24_руб] -1)	0%;-0%;0%		False
+!Меры	Остаток тек.руб.	CALCULATE(SUM('Stock сегодня'[Сумма_р]))  	#,0		False
+!Меры	Продано c 1 января 24	CALCULATE('!Меры'[Продажи_шт],DATESBETWEEN ('Calendar'[Date],"01.01.2024",TODAY()))	#,0		False
+!Меры	Продано прошлая неделя	CALCULATE('!Меры'[Продажи_шт],DATESBETWEEN('Calendar'[Date],'Calendar'[начало недели],TODAY()))	#,0		False
+!Меры	Продажи_руб_i	CALCULATE(SUM('Sale'[sale]),ALL(hovering_s),'Sale'[Customer_IDRRef] <> "0d211e71-e6b8-11e5-be4d-000c29617c64")	#,0		False
+!Меры	Валовая прибыль_i	CALCULATE((SUM(Sale[Продажа без НДС]) - ('!Меры'[Продажи_закупка])),ALL(hovering_s))	#,0		False
+!Меры	% вып.плана_i	DIVIDE('!Меры'[Продажи_руб_i],'!Меры'[План_продаж])			False
+!Меры	% выполнения продаж без движения	DIVIDE('!Меры'[Всего],'!Меры'[Цель на месяц])	0%;-0%;0%		False
+!Меры	расх_в_сборку_р	SUM('Расход комп'[ssumcost])	#,0		False
+!Меры	Всего	'!Меры'[расх_в_сборку_р]+'!Меры'[Продажа руб.себ]+'!Меры'[передача_мат_в_произ]+'!Меры'[Списание_руб.]			False
+!Меры	Списание_руб.	SUM(Marriage_s[CostWoVAT])	#,0		False
+!Меры	Списание_шт.	SUM(Marriage_s[Quantity])	#,0		False
+!Меры	прод_себ_р	CALCULATE(SUM(Sale[CostPrice]))			False
+!Меры	Остатки_руб_1м	SUM('Остаток начало месяца'[Сумма_руб])			False
+!Меры	Остаток старт	CALCULATE('!Меры'[Остатки_руб_1м])			False
+!Меры	Цель(всп)	 VAR TotalStock =      CALCULATE(         SUM('Остаток начало месяца'[Сумма_руб]),         REMOVEFILTERS('Managers'),         REMOVEFILTERS('Sale'),         REMOVEFILTERS('Counteragents'),         REMOVEFILTERS('Organizations'),         REMOVEFILTERS('hovering_s'),         REMOVEFILTERS('reserve_s'),         REMOVEFILTERS('Nomenclature'),         KEEPFILTERS('Calendar'),            -- Сохраняем фильтр по календарю         KEEPFILTERS('hovering_s'[Дата]) -- !!! И обязательно сохраняем фильтр по дате списка неликвида !!!     ) RETURN TotalStock * 0.05  			False
+!Меры	Доля в плане	SUM('план продаж'[Доля])	0%;-0%;0%		False
+!Меры	Цель на месяц	'!Меры'[Доля в плане] * '!Меры'[Цель(всп)]	#,0		False
+!Меры	передача_мат_в_произ	SUM(transfer_of_material_production_s[сум.в произ.себ])			False
+!Меры	просроченные	IF(CALCULATE(SUM('Задачи'[Столбец]),ALL('Calendar')) = 0,BLANK(),CALCULATE(SUM('Задачи'[Столбец]),ALL('Calendar'),ALLSELECTED(Managers[Менеджер])))	0		False
+!Меры	Перекуп	CALCULATE(SUM('Перекупы для kpi'[Количество]),ALL('Calendar'))	#,0		False
+!Меры	План_продаж	 VAR plan = IF('план продаж'[% вып.плана] < 1,'!Меры'[Валовая прибыль_i] * 0.90,'!Меры'[Валовая прибыль_i]) VAR plan1 = ('!Меры'[Валовая прибыль_i] - plan) * -1  RETURN plan1	#,0		False
+!Меры	План продаж	SUM('план продаж'[Значение])	#,0		False
+!Меры	Последняя_дата_продажи	 var a = LASTDATE('Sale'[Period]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	dd.mm.yy		False
+!Меры	Последняя_дата_расхода	 var a = LASTDATE('Расход комп'[Date]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	dd.mm.yy		False
+!Меры	Последняя_дата_поступления_сырья	 var a = LASTDATE('entrance_raw_material_s'[Дата]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	dd.mm.yy		False
+!Меры	Последняя_дата_рас_перераб	 var a = LASTDATE('production_raw_material_s'[Дата]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	dd.mm.yyyy		False
+!Меры	Последняя_дата_поступления_товара	 var a = LASTDATE('purchase_goods_s'[Дата]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	dd.mm.yyyy		False
+!Меры	Последняя_дата_передача_мат_впроизв	 var a = LASTDATE('transfer_of_material_production_s'[Дата]) var b = BLANK() return     if(ISINSCOPE('Nomenclature'[IDRRef]),a,b)	General Date		False
+!Меры	Цель	'!Меры'[Остаток старт] * 0.05			False
+!Меры	%	DIVIDE('!Меры'[Всего],'!Меры'[Остаток старт])	0.00%;-0.00%;0.00%		False
+!Меры	Остаток.парт.шт	CALCULATE(SUM('stock_today_s'[Количество]))	#,0		False
+!Меры	Дата отгрузки (план)	LASTDATE('orders_supplier_s'[Дата отгрузки (план)])	General Date		False
+!Меры	Дата отгрузки (факт)	LASTDATE('purchase_goods_s'[Дата])	dd.mm.yyyy		False
+!Меры	Прошло дней	DATEDIFF('!Меры'[Дата отгрузки (факт)],TODAY(),DAY)	0		False
+!Меры	Остаток.парт.руб	CALCULATE(SUM('stock_today_s'[Себестоимость]))	#,0		False
+!Меры	резерв	SUM(reserve_s[В резерве])	#,0		False
+!Меры	Продажа руб.себ	SUM(Sale[Продажа_руб_себ])	#,0		False
+!Меры	Перед.мат.в произ	SUM(transfer_of_material_production_s[сум.в произ.себ])	#,0		False
+!Меры	оборач	DIVIDE('!Меры'[Остатки_руб],'!Меры'[Продажа руб.себ])*7	#,0		False
+!Меры	Резерв_р	SUM(reserve_s[резерв.р])	#,0		False
+!Меры	Остатко_тек_штт	CALCULATE('!Меры'[Остаток_тек_шт],ALL(Managers))			False
+!Меры	свобод_ост_шт	CALCULATE( SWITCH ( TRUE (), ISINSCOPE ( 'Managers'[Менеджер з]),BLANK(), ISINSCOPE ( 'Nomenclature'[IDRRef] ), '!Меры'[Остаток_тек_шт] - '!Меры'[резерв], '!Меры'[Остаток_тек_шт] - '!Меры'[резерв] ),ALL(Managers))			False
+!Меры	расход общ.	'!Меры'[Продажи_шт] + '!Меры'[Расход_в_сборку]			False
+!Меры	расход_23	CALCULATE('!Меры'[расход общ.],'Calendar'[year] = 2023,ALL('Calendar'[week]))			False
+!Меры	расход_24	CALCULATE('!Меры'[расход общ.],'Calendar'[year] = 2024,ALL('Calendar'[week]))			False
+!Меры	Продажи себ.	SUM(Sale[Себестоимость])	#,0		False
+!Меры	обор	DIVIDE('!Меры'[Остатки_руб],'!Меры'[Продажи себ.])*7			False
+!Меры	ср. значение продаж себ	AVERAGEX(VALUES('Calendar'[week]),'!Меры'[Продажи себ.])	#,0		False
+!Меры	ср. значение продаж	AVERAGEX(VALUES('Calendar'[week]),'!Меры'[Продажи_руб])	#,0		False
+!Меры	Оборачч	 VAR nach = CALCULATE([Остатки_руб],STARTOFMONTH('Stock'[Period])) VAR kon = CALCULATE([Остатки_руб],ENDOFMONTH('Stock'[Period])) VAR SR = DIVIDE(CALCULATE(nach+kon),2) VAR dni = DISTINCTCOUNT('Calendar'[Date]) VAR prod = [Продажи себ.] return CALCULATE(DIVIDE(sr,prod)*dni)	0		False
+!Меры	Остаток на конец	CALCULATE([Остатки_руб],ENDOFMONTH('Calendar'[Date]))			False
+!Меры	Мера	DIVIDE((DIVIDE(('!Меры'[Оборачч]+[Остаток на конец]),2)),[Продажи себ.])			False
+!Меры	ср. значение оборач	AVERAGEX(VALUES('Calendar'[month]),'!Меры'[Оборачч])			False
+!Меры	Доля % от продаж	DIVIDE('!Меры'[Списание_руб.],'!Меры'[Продажи_руб])	0.00%;-0.00%;0.00%		False
+!Меры	Доля % от валовой	DIVIDE('!Меры'[Списание_руб.],'!Меры'[Валовая прибыль])	0.00%;-0.00%;0.00%		False
+!Меры	Задачи в работе	 VAR CurrentDate = MAX('Calendar'[Date]) RETURN CALCULATE(DISTINCTCOUNT('Задачи'[id]),     ALL('Calendar'),     FILTER(ALL('Задачи'[createdDate]),'Задачи'[createdDate]<=CurrentDate),     FILTER(ALL('Задачи'[closedDate]),OR('Задачи'[closedDate]>CurrentDate,'Задачи'[closedDate]= BLANK())))	0		False
+!Меры	Закрытые задачи (н)	SUMX(VALUES('Calendar'[Date]),'!Меры'[Закрытые задачи])	0		False
+!Меры	Закрытые задачи	 VAR CurrentDate = MAX('Calendar'[Date]) RETURN CALCULATE(DISTINCTCOUNT('Задачи'[id]),     ALL('Calendar'),     FILTER(ALL('Задачи'[closedDate]),'Задачи'[closedDate] = CurrentDate))	0		False
+!Меры	Новые задачи	 VAR CurrentDate = MAX('Calendar'[Date]) RETURN CALCULATE(DISTINCTCOUNT('Задачи'[id]),     ALL('Calendar'),     FILTER(ALL('Задачи'[createdDate]),'Задачи'[createdDate] = CurrentDate))	0		False
+!Меры	Новые задачи (н)	SUMX(VALUES('Calendar'[Date]),'!Меры'[Новые задачи])	0		False
+!Меры	Доля1	DIVIDE([Продажи_руб],CALCULATE([Продажи_руб],ALL('Calendar'[№_month])))	0.00%;-0.00%;0.00%		False
+!Меры	Продажи_25_руб	CALCULATE('!Меры'[Продажи_руб],FILTER('Calendar','Calendar'[year] = 2025))	#,0		False
+!Меры	Валовая_п_25_руб	CALCULATE('!Меры'[Валовая прибыль],FILTER('Calendar','Calendar'[year] = 2025))	#,0		False
+!Меры	Остатки_25_руб	CALCULATE('!Меры'[Остатки_руб],FILTER('Calendar','Calendar'[year] = 2025))	#,0		False
+!Меры	Остатки_25_шт	CALCULATE('!Меры'[Остатки_шт],FILTER('Calendar','Calendar'[year] = 2025))	#,0		False
+!Меры	LFL_25/24_прод.руб	if('!Меры'[Продажи_24_руб] = BLANK(),100,DIVIDE('!Меры'[Продажи_25_руб],'!Меры'[Продажи_24_руб]))-1	0%;-0%;0%		False
+!Меры	Продажи_25_шт	CALCULATE('!Меры'[Продажи_шт],FILTER('Calendar','Calendar'[year] = 2025))	#,0		False
+!Меры	Продано c 1 января 25	CALCULATE('!Меры'[Продажи_шт],DATESBETWEEN ('Calendar'[Date],"01.01.2025",TODAY()))	0		False
+!Меры	LFL_25/24_валов.руб	(DIVIDE('!Меры'[Валовая_п_25_руб],'!Меры'[Валовая_п_24_руб]))-1	0.00%;-0.00%;0.00%		False
+!Меры	себес	SUM('себестоимость'[Cost])			False
+!Меры	расх_в_сборку_р2	SUM('Расход комп'[себ_расх])	0		False
+!Меры	Дней долга	max('задолженность'[Дней долга])	#,0		False
+!Меры	Задолж.всего	SUM('задолженность'[Всего])	#,0		False
+!Меры	Просрочено	SUM('задолженность'[Просрочено.1])	#,0		False
+!Меры	Отсрочка дней	max('задолженность'[Отсрочка, дней])	#,0		False
+!Меры	просрочка дней	if(MAX('задолженность'[Просрочено, дней]) < 0,BLANK(),MAX('задолженность'[Просрочено, дней]))	#,0		False
+!Меры	Подходит срок	SUM('задолженность'[Подходит срок])	#,0		False
+!Меры	Наш долг	SUM('задолженность'[Наш долг])	#,0		False
+!Меры	количество заказов	DISTINCTCOUNT('задолженность'[Расчетный/плановый документ])	0		False
+!Меры	количество клиентов	DISTINCTCOUNT('задолженность'[Клиент])	0		False
+!Меры	задолж.всег.д	SUM('задолженность динамика'[Всего])			False
+!Меры	кол-во ком	3	0		False
+!Меры	количество план	CALCULATE(DISTINCTCOUNT(df[Значение]),FILTER('df','df'[categoryId] = 45))	0		False
+!Меры	количество факт	CALCULATE(DISTINCTCOUNT(df[Значение]),FILTER('df','df'[categoryId] = 6),OR('df'[stageId] = "DT128_6:SUCCESS", 'df'[stageId] = "DT128_6:UC_5D19ME"))	0		False
+!Меры	План сформирован на	DIVIDE(IF('!Меры'[количество план] = BLANK(),0,'!Меры'[количество план]),'!Меры'[кол-во ком])	0%;-0%;0%		False
+!Меры	%_к	DIVIDE(IF('!Меры'[количество факт] = BLANK(),0,'!Меры'[количество факт]),'!Меры'[кол-во ком])	0%;-0%;0%		False
+!Меры	нелеквид	 VAR nelekv = IF([% выполнения продаж без движения] < 1,[Валовая прибыль_i] * 0.95,IF([% выполнения продаж без движения] >1.2,[Валовая прибыль_i] * 1.03,[Валовая прибыль_i])) VAR  nelkv1 = ([Валовая прибыль_i] - nelekv) *-1 RETURN nelkv1	#,0		False
+!Меры	команд	 VAR plan_k = IF([%_к] < 1,[Валовая прибыль_i] * 0.95,[Валовая прибыль_i]) VAR plan_k1 = ([Валовая прибыль_i] - plan_k) * -1  RETURN if(plan_k1=BLANK(),BLANK(),plan_k1)	#,0		False
+!Меры	Задачи	 VAR zad = if([просроченные] > 0,[Валовая прибыль_i] * 0.75,[Валовая прибыль_i]) VAR zad1 = ([Валовая прибыль_i] - zad) * -1 RETURN zad1	#,0		False
+!Меры	перекупы	 VAR perek = IF([Перекуп] > 0,[Валовая прибыль_i] * 0.95,[Валовая прибыль_i]) VAR perek1 = ([Валовая прибыль_i] - perek) * -1 RETURN perek1 	#,0		False
+!Меры	Валовая KPI	 VAR nelekv = IF([% выполнения продаж без движения] < 1,[Валовая прибыль_i] * 0.95,IF([% выполнения продаж без движения] >1.2,[Валовая прибыль_i] * 1.03,[Валовая прибыль_i])) VAR plan = IF([% вып.плана] < 1,[Валовая прибыль_i] * 0.90,[Валовая прибыль_i]) VAR zad = if([просроченные] > 0,[Валовая прибыль_i] * 0.75,[Валовая прибыль_i]) VAR perek = if(SUM('Перекупы для kpi'[Количество])>0,[Валовая прибыль_i] * 0.95,[Валовая прибыль_i]) VAR plan_k = IF([%_к] < 1,[Валовая прибыль_i] * 0.95,[Валовая прибыль_i]) VAR  nelkv1 = ([Валовая прибыль_i] - nelekv) * -1 VAR plan1 = ([Валовая прибыль_i] - plan) * -1  VAR zad1 = ([Валовая прибыль_i] - zad) * -1 VAR perek1 = ([Валовая прибыль_i] - perek) * -1 VAR plan_k1 = ([Валовая прибыль_i] - plan_k) * -1  RETURN [Валовая прибыль_i] + plan1+zad1+nelkv1+perek1+plan_k1	#,0		False
+!Меры	Разница	[Валовая KPI] -[Валовая прибыль_i]	#,0		False
+!Меры	Последнее обновление	LASTDATE(Sale[RefreshDate])	General Date		False
+!Меры	количество_комуникаций	DISTINCTCOUNT('комуникации'[ENTITY_ID])	0		False
+!Меры	Последняя дата комуникации	LASTDATE('комуникации'[DATE])	dd.mm.yyyy		False
+!Меры	кол-во дней без комуник	DATEDIFF(TODAY(),[Последняя дата комуникации],DAY)*-1	0		False
+!Меры	кол-во комун_25	CALCULATE([количество_комуникаций],FILTER('Calendar','Calendar'[year] = 2025))	0		False
+!Меры	кол-во комун_24	CALCULATE([количество_комуникаций],FILTER('Calendar','Calendar'[year] = 2024))	0		False
+!Меры	Статус_к	 VAR MatrixStatus =      SWITCH(         TRUE(),         [Продажи_25_руб] <> BLANK() && [кол-во комун_25] = BLANK(), "Обрати внимание",         [Продажи_25_руб] = BLANK() && [кол-во комун_25] = BLANK(), "Свободен",         [Продажи_25_руб] <> BLANK() && [кол-во комун_25] <> BLANK(), "В работе",         [Продажи_25_руб] = BLANK() &&  [кол-во комун_25] <> BLANK(), "Обрати внимание",         "Не определено" // На случай неучтенных комбинаций     ) VAR DaysStatus =      SWITCH(         TRUE(),         ISBLANK([кол-во дней без комуник]) || [кол-во дней без комуник] > 90, "Свободен",         [кол-во дней без комуник] > 30, "Обрати внимание",         "В работе"     ) RETURN      IF(         MatrixStatus = "В работе",          DaysStatus, // Если матрица говорит "Нормально", применяем логику дней         MatrixStatus // В остальных случаях приоритет у матрицы     )			False
+!Меры	в комплект	CALCULATE('!Меры'[Продажи_24_руб],'Матрица'[статус] = "В КОМПЛЕКТУЮЩИХ")			False
+!Меры	ГОТОВЫМ	CALCULATE('!Меры'[Продажи_24_руб],'Матрица'[статус] = "ГОТОВЫМ")			False
+!Меры	Всего задач	DISTINCTCOUNT('Задачи'[id])	0		False
+!Меры	Новые задачи за период	 CALCULATE( DISTINCTCOUNT('Задачи'[id]), 'Задачи'[createdDate] >= MIN('Calendar'[Date]) && 'Задачи'[createdDate] <= MAX('Calendar'[Date]) )	0		False
+!Меры	Закрытые задачи за период	CALCULATE( DISTINCTCOUNT('Задачи'[id]), USERELATIONSHIP('Задачи'[closedDate], 'Calendar'[Date]), 'Задачи'[closedDate] >= MIN('Calendar'[Date]) && 'Задачи'[closedDate] <= MAX('Calendar'[Date]) )	0		False
+!Меры	Просроченные задачи	CALCULATE( DISTINCTCOUNT('Задачи'[id]), 'Задачи'[статус задачи] = "просрочена" )	0		False
+!Меры	Задачи в работе.	 CALCULATE( DISTINCTCOUNT('Задачи'[id]), 'Задачи'[createdDate] <= MAX('Calendar'[Date]) && (ISBLANK('Задачи'[closedDate]) || 'Задачи'[closedDate] > MAX('Calendar'[Date])) )	0		False
+!Меры	Скорость закрытия	 AVERAGEX( FILTER('Задачи', NOT ISBLANK('Задачи'[closedDate])), 'Задачи'[closedDate] - 'Задачи'[createdDate] )			False
+!Меры	Нагрузка в день	 VAR MinDate = MIN('Calendar'[Date]) VAR MaxDate = MAX('Calendar'[Date]) VAR DaysCount = DATEDIFF(MinDate, MaxDate, DAY) + 1 VAR TotalTasks = [Новые задачи за период] RETURN DIVIDE(TotalTasks, DaysCount, 0)			False
+!Меры	Номер недели	WEEKNUM(MAX('Calendar'[Date]))	0		False
+!Меры	Название дня	 SWITCH( WEEKDAY(MAX('Calendar'[Date])), 1, "Вс", 2, "Пн", 3, "Вт", 4, "Ср", 5, "Чт", 6, "Пт", 7, "Сб" )			False
+!Меры	Эффективность менеджера	 VAR SelectedPeriod = DATEDIFF(MIN('Calendar'[Date]), MAX('Calendar'[Date]), DAY) VAR ClosedTasks = [Закрытые задачи за период] VAR Result = SWITCH( TRUE(), SelectedPeriod <= 7, DIVIDE(ClosedTasks, SelectedPeriod, 0), SelectedPeriod <= 90, DIVIDE(ClosedTasks, DIVIDE(SelectedPeriod, 7, 1), 0), DIVIDE(ClosedTasks, DIVIDE(SelectedPeriod, 30, 1), 0) ) RETURN Result			False
+план продаж	% вып.плана	DIVIDE([Продажи_руб_i],'!Меры'[План продаж])	0%;-0%;0%		False
+план продаж	%_РГ	DIVIDE('!Меры'[Продажи_руб_РГ],'!Меры'[Продажи_руб]) 	0%;-0%;0%		False
+план продаж	%_Эк	DIVIDE('!Меры'[Продажи_руб_Эк],'!Меры'[Продажи_руб]) 	0%;-0%;0%		False

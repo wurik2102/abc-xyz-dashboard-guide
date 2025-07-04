@@ -1,0 +1,78 @@
+## macOS System
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+
+# User-specific
+zsh_history
+*.plist
+*.lock
+Cookies*
+DIPS*
+machineid
+languagespacks.json
+
+# Application Support
+Library/
+*.log
+code.lock
+Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.venv/
+env/
+.env
+
+# Build directories
+dist/
+build/
+*.egg-info/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+# System files
+zsh_history
+*.plist
+*.lock
+Cookies*
+DIPS*
+machineid
+Network Persistent State
+languagespacks.json
+
+# VS Code cache
+code.lock
+
+# Автогенерируемые файлы
+*.tmp
+*.bak
+~$*
