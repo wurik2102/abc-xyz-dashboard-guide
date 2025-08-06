@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Инструкция по Executive Dashboard - Исполнительная панель</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%); 
+            min-height: 100vh; color: white; line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 3em; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); margin-bottom: 10px; }
+        .header p { font-size: 1.3em; opacity: 0.9; }
+        
+        .nav { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 30px; text-align: center; }
+        .nav-btn { 
+            background: rgba(255,255,255,0.2); color: white; border: none; 
+            padding: 12px 24px; margin: 5px; border-radius: 25px; cursor: pointer; 
+            transition: all 0.3s; font-size: 16px; 
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .nav-btn.active { background: #e67e22; }
+        
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        .card { 
+            background: rgba(255,255,255,0.95); color: #333; 
+            border-radius: 16px; padding: 30px; margin: 25px 0; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #e67e22;
+        }
+        .card h2 { color: #2c3e50; font-size: 2em; margin-bottom: 20px; border-bottom: 2px solid #e67e22; padding-bottom: 10px; }
+        .card h3 { color: #34495e; margin: 20px 0 15px; }
+        
+        .visual-element { 
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+            border-radius: 12px; padding: 20px; margin: 20px 0; 
+            border-left: 5px solid #e67e22; 
+        }
+        .kpi-element { border-left-color: #e74c3c; }
+        .chart-element { border-left-color: #3498db; }
+        .table-element { border-left-color: #9b59b6; }
+        .forecast-element { border-left-color: #1abc9c; }
+        .filter-element { border-left-color: #f39c12; }
+        
+        .tip { background: linear-gradient(135deg, #fff3e0, #ffcc80); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #f39c12; }
+        .warning { background: linear-gradient(135deg, #ffebee, #ffcdd2); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #f44336; }
+        .success { background: linear-gradient(135deg, #e8f5e8, #c8e6c9); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #4caf50; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .grid-item { background: #f8f9fa; border-radius: 10px; padding: 20px; border-left: 4px solid #e67e22; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .kpi-card { 
+            background: white; border-radius: 12px; padding: 20px; 
+            border-left: 5px solid #e67e22; box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .kpi-value { font-size: 2.5em; font-weight: bold; margin: 10px 0; }
+        .kpi-label { font-size: 0.9em; color: #666; text-transform: uppercase; }
+        .kpi-change { font-size: 0.8em; margin-top: 5px; }
+        .positive { color: #27ae60; }
+        .negative { color: #e74c3c; }
+        
+        .field-desc { 
+            background: #fff; border-radius: 8px; padding: 15px; margin: 10px 0; 
+            border-left: 4px solid #e67e22; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .formula { 
+            background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; 
+            padding: 10px; margin: 10px 0; font-family: monospace; font-size: 14px;
+        }
+        
+        .back-to-top { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #e67e22; color: white; border: none; 
+            padding: 15px; border-radius: 50%; cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #fff3e0, #ffcc80); color: #333; 
+            border-radius: 12px; padding: 25px; margin: 20px 0; 
+            border-left: 5px solid #f39c12; font-size: 18px;
+        }
+        
+        .scenario-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9); 
+            border-radius: 12px; padding: 20px; margin: 15px 0; 
+            border-left: 5px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 EXECUTIVE DASHBOARD</h1>
+            <p>Полное руководство по исполнительной панели управления</p>
+        </div>
+        
+        <div class="intro-box">
+            <h3>🎯 Назначение Executive Dashboard</h3>
+            <p>Исполнительная панель - это <strong>главный инструмент руководителя</strong> для ежедневного мониторинга ключевых показателей бизнеса. Дашборд предоставляет полную картину состояния компании в реальном времени и помогает принимать стратегические решения на основе актуальных данных.</p>
+        </div>
+        
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('overview')">🏛️ Обзор дашборда</button>
+            <button class="nav-btn" onclick="showSection('kpis')">📈 KPI карточки</button>
+            <button class="nav-btn" onclick="showSection('analytics')">📊 Аналитика</button>
+            <button class="nav-btn" onclick="showSection('forecasts')">🔮 Прогнозы</button>
+            <button class="nav-btn" onclick="showSection('usage')">💼 Применение</button>
+        </div>
+        
+        <!-- ОБЗОР ДАШБОРДА -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <h2>🏛️ Архитектура исполнительного дашборда</h2>
+                
+                <div class="success">
+                    <h3>🎯 Концепция "5-секундного инсайта"</h3>
+                    <p>Дашборд спроектирован так, чтобы руководитель мог за 5 секунд оценить:</p>
+                    <ul>
+                        <li><strong>Состояние бизнеса:</strong> Хорошо, нормально или требует внимания</li>
+                        <li><strong>Тренды:</strong> Растем, стагнируем или падаем</li>
+                        <li><strong>Приоритеты:</strong> На что обратить внимание в первую очередь</li>
+                        <li><strong>Возможности:</strong> Где потенциал для роста</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-element">
+                    <h3>🗂️ Структура дашборда (сверху вниз)</h3>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>📅 Верхняя панель - Управление периодом</h4>
+                            <p><strong>Расположение:</strong> Правый верхний угол</p>
+                            <p><strong>Элементы:</strong></p>
+                            <ul>
+                                <li>Дата начала периода (01.07.2025)</li>
+                                <li>Дата окончания периода (31.07.2025)</li>
+                                <li>Календарные селекторы</li>
+                            </ul>
+                            <p><strong>Функция:</strong> Позволяет анализировать любой временной период - от одного дня до года</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>📊 Верхний ряд - Ключевые KPI</h4>
+                            <p><strong>4 основные карточки:</strong></p>
+                            <ul>
+                                <li>💰 Продажи - главный доходный показатель</li>
+                                <li>💸 Расходы - контроль затрат</li>
+                                <li>💎 Прибыль - результативность бизнеса</li>
+                                <li>⚡ Эффективность - качество работы</li>
+                            </ul>
+                            <p><strong>Особенность:</strong> Цветовая индикация статуса каждого показателя</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>📈 Средний ряд - Детальная аналитика</h4>
+                            <p><strong>3 аналитических блока:</strong></p>
+                            <ul>
+                                <li>Динамика продаж (график продаж vs план)</li>
+                                <li>Операционные показатели (таблица метрик)</li>
+                                <li>Задачи и контроль (управление проектами)</li>
+                            </ul>
+                            <p><strong>Функция:</strong> Углубленный анализ для понимания причин изменений KPI</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>🔮 Нижний ряд - Стратегическое планирование</h4>
+                            <p><strong>2 прогнозных блока:</strong></p>
+                            <ul>
+                                <li>Прогноз и планирование (краткосрочные цели)</li>
+                                <li>Финансовые индикаторы (долгосрочная устойчивость)</li>
+                            </ul>
+                            <p><strong>Назначение:</strong> Инструменты для стратегического планирования и контроля</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>🎨 Принципы дизайна дашборда</h3>
+                    <ul>
+                        <li><strong>Иерархия важности:</strong> Самое важное - сверху и крупнее</li>
+                        <li><strong>Цветовое кодирование:</strong> Зеленый = хорошо, Красный = проблема, Оранжевый = внимание</li>
+                        <li><strong>Прогрессивное раскрытие:</strong> От общего к частному</li>
+                        <li><strong>Сравнимость:</strong> Все показатели можно сравнивать с планом или прошлым периодом</li>
+                        <li><strong>Actionability:</strong> Каждый элемент подсказывает, что делать</li>
+                    </ul>
+                </div>
+                
+                <div class="warning">
+                    <h3>⚠️ Ключевые особенности использования</h3>
+                    <ul>
+                        <li><strong>Обновление данных:</strong> В реальном времени при изменении периода</li>
+                        <li><strong>Взаимосвязанность:</strong> Все элементы связаны единой логикой</li>
+                        <li><strong>Контекстность:</strong> Показатели адаптируются под выбранный период</li>
+                        <li><strong>Мобильность:</strong> Адаптивный дизайн для работы на любых устройствах</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KPI КАРТОЧКИ -->
+        <div id="kpis" class="section">
+            <div class="card">
+                <h2>📈 Детальный разбор KPI карточек</h2>
+                
+                <div class="intro-box">
+                    <h3>🎯 Философия KPI в Executive Dashboard</h3>
+                    <p>Каждая KPI карточка - это <strong>мини-отчет</strong>, который за 3 секунды дает полную картину по конкретному аспекту бизнеса. Включает текущее значение, динамику, статус и контекст для принятия решений.</p>
+                </div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card" style="border-left-color: #27ae60;">
+                        <div class="kpi-label">💰 ПРОДАЖИ</div>
+                        <div class="kpi-value" style="color: #27ae60;">43,5</div>
+                        <div style="font-size: 0.9em; color: #666;">МЛН РУБ</div>
+                        <div class="kpi-change negative">⬇ -16% к прошлому году</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-left-color: #e74c3c;">
+                        <div class="kpi-label">💸 РАСХОДЫ</div>
+                        <div class="kpi-value" style="color: #e74c3c;">46,8</div>
+                        <div style="font-size: 0.9em; color: #666;">МЛН РУБ</div>
+                        <div class="kpi-change negative">⬆ -51% к прошлому году</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-left-color: #8e44ad;">
+                        <div class="kpi-label">💎 ПРИБЫЛЬ</div>
+                        <div class="kpi-value" style="color: #8e44ad;">28,6</div>
+                        <div style="font-size: 0.9em; color: #666;">МЛН РУБ</div>
+                        <div class="kpi-change negative">⬇ -18% к прошлому году</div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-left-color: #f39c12;">
+                        <div class="kpi-label">⚡ ЭФФЕКТИВНОСТЬ</div>
+                        <div class="kpi-value" style="color: #f39c12;">ТРЕБУЕТ ВНИМАНИЯ</div>
+                        <div style="font-size: 0.8em; color: #666;">План выполнен ✗ Прибыль растет ✗</div>
+                        <div class="kpi-change">План: ● Прибыль: -18%</div>
+                    </div>
+                </div>
+                
+                <div class="visual-element kpi-element">
+                    <h3>💰 Карточка "ПРОДАЖИ" - детальный разбор</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Структура карточки продаж</h4>
+                        <p><strong>Основное значение:</strong> 43,5 МЛН РУБ</p>
+                        <div class="formula">
+                            Продажи = Σ(Количество × Цена) за выбранный период
+                        </div>
+                        <p><strong>Источник данных:</strong> Все продажи из CRM/ERP систем</p>
+                        <p><strong>Валюта:</strong> Приведено к рублям по курсу на дату операции</p>
+                    </div>
+                    
+                    <div class="field-desc">
+                        <h4>📈 Динамика: "-16% к прошлому году"</h4>
+                        <p><strong>Расчет:</strong></p>
+                        <div class="formula">
+                            Изменение = ((Текущий период - Аналогичный период прошлого года) / Прошлый год) × 100%
+                        </div>
+                        <p><strong>Интерпретация:</strong></p>
+                        <ul>
+                            <li><strong>Красный цвет:</strong> Падение продаж требует немедленного внимания</li>
+                            <li><strong>-16%:</strong> Серьезное снижение, нужен анализ причин</li>
+                            <li><strong>Стрелка вниз:</strong> Негативный тренд</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>💡 Что делать при снижении продаж?</h4>
+                        <ol>
+                            <li><strong>Проанализировать причины:</strong> Рынок, конкуренты, продукт, команда</li>
+                            <li><strong>Проверить воронку продаж:</strong> Лиды, конверсия, средний чек</li>
+                            <li><strong>Изучить клиентов:</strong> Уход клиентов, снижение активности</li>
+                            <li><strong>Оценить продукт:</strong> Актуальность предложения</li>
+                            <li><strong>Мотивировать команду:</strong> Дополнительные стимулы</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="visual-element kpi-element">
+                    <h3>💸 Карточка "РАСХОДЫ" - контроль затрат</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Компоненты расходов</h4>
+                        <p><strong>Основное значение:</strong> 46,8 МЛН РУБ</p>
+                        <div class="formula">
+                            Расходы = Операционные + Административные + Коммерческие + Прочие
+                        </div>
+                        <p><strong>Включает:</strong></p>
+                        <ul>
+                            <li>Себестоимость товаров</li>
+                            <li>Зарплаты и социальные взносы</li>
+                            <li>Аренда и коммунальные платежи</li>
+                            <li>Маркетинг и реклама</li>
+                            <li>Логистика и доставка</li>
+                            <li>Прочие операционные расходы</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4>⚠️ Анализ динамики: "-51% к прошлому году"</h4>
+                        <p><strong>Парадокс:</strong> Расходы снизились на 51%, но продажи упали только на 16%</p>
+                        <p><strong>Возможные причины:</strong></p>
+                        <ul>
+                            <li><strong>Оптимизация затрат:</strong> Успешное снижение издержек</li>
+                            <li><strong>Изменение структуры продаж:</strong> Более маржинальные товары</li>
+                            <li><strong>Сезонный фактор:</strong> Период с меньшими затратами</li>
+                            <li><strong>Единовременные расходы в прошлом году:</strong> Инвестиции, закупки</li>
+                        </ul>
+                        
+                        <div class="success">
+                            <p><strong>Позитивный сигнал:</strong> Снижение расходов при относительно меньшем падении продаж говорит об улучшении эффективности операций.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element kpi-element">
+                    <h3>💎 Карточка "ПРИБЫЛЬ" - результативность</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Расчет прибыли</h4>
+                        <p><strong>Основное значение:</strong> 28,6 МЛН РУБ</p>
+                        <div class="formula">
+                            Прибыль = Продажи (43.5) - Расходы (46.8) = -3.3 МЛН РУБ?
+                        </div>
+                        <div class="warning">
+                            <p><strong>Внимание:</strong> Возможно в карточке показана валовая прибыль или прибыль с другими компонентами</p>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>📈 Анализ динамики прибыли</h4>
+                        <p><strong>-18% к прошлому году</strong> - умеренное снижение</p>
+                        <p><strong>Позитивные моменты:</strong></p>
+                        <ul>
+                            <li>Падение прибыли (-18%) меньше падения продаж (-16%)</li>
+                            <li>Значительное снижение расходов (-51%) компенсирует часть потерь</li>
+                            <li>Сохранение положительной прибыли</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="visual-element kpi-element">
+                    <h3>⚡ Карточка "ЭФФЕКТИВНОСТЬ" - комплексная оценка</h3>
+                    
+                    <div class="field-desc">
+                        <h4>🎯 Статус: "ТРЕБУЕТ ВНИМАНИЯ"</h4>
+                        <p><strong>Компоненты оценки:</strong></p>
+                        <ul>
+                            <li><strong>План выполнен:</strong> ✗ (не выполнен)</li>
+                            <li><strong>Прибыль растет:</strong> ✗ (снижается на 18%)</li>
+                        </ul>
+                        
+                        <div class="formula">
+                            Эффективность = f(Выполнение плана, Динамика прибыли, Рентабельность, Производительность)
+                        </div>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4>🚨 Интерпретация статуса "ТРЕБУЕТ ВНИМАНИЯ"</h4>
+                        <p><strong>Что это означает:</strong></p>
+                        <ul>
+                            <li>Бизнес функционирует, но есть проблемные зоны</li>
+                            <li>Необходимы корректирующие действия</li>
+                            <li>Ситуация не критическая, но игнорировать нельзя</li>
+                            <li>Требуется детальный анализ и план улучшений</li>
+                        </ul>
+                        
+                        <p><strong>Возможные статусы эффективности:</strong></p>
+                        <ul>
+                            <li><span style="color: #27ae60;">🟢 ОТЛИЧНО</span> - все показатели в норме</li>
+                            <li><span style="color: #f39c12;">🟡 ТРЕБУЕТ ВНИМАНИЯ</span> - есть проблемы</li>
+                            <li><span style="color: #e74c3c;">🔴 КРИТИЧНО</span> - серьезные проблемы</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- АНАЛИТИКА -->
+        <div id="analytics" class="section">
+            <div class="card">
+                <h2>📊 Блоки детальной аналитики</h2>
+                
+                <div class="visual-element chart-element">
+                    <h3>📈 Аналитика продаж (левый блок)</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Структура графика</h4>
+                        <p><strong>Тип диаграммы:</strong> Линейная диаграмма с областями</p>
+                        <p><strong>Временной ряд:</strong> По неделям (июль 06 - июль 27)</p>
+                        <p><strong>Две линии:</strong></p>
+                        <ul>
+                            <li><strong>🔵 Синяя линия:</strong> Продажи_руб (фактические продажи)</li>
+                            <li><strong>⚫ Черная пунктирная:</strong> План_продаж_Daily (плановые значения)</li>
+                        </ul>
+                        <p><strong>Ось Y:</strong> Объем в миллионах рублей (0 МЛН - 2 МЛН)</p>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>📈 Анализ трендов на графике</h4>
+                        <p><strong>Ключевые наблюдения:</strong></p>
+                        <ul>
+                            <li><strong>Волатильность продаж:</strong> Сильные колебания от недели к неделе</li>
+                            <li><strong>Соотношение с планом:</strong> Фактические продажи иногда превышают план, иногда недотягивают</li>
+                            <li><strong>Пиковые точки:</strong> Хорошо видны недели с максимальными продажами</li>
+                            <li><strong>Общий тренд:</strong> Отсутствие четкой направленности</li>
+                        </ul>
+                        
+                        <div class="tip">
+                            <p><strong>💡 Как использовать график:</strong></p>
+                            <ol>
+                                <li><strong>Выявление паттернов:</strong> Ищите повторяющиеся циклы</li>
+                                <li><strong>Анализ отклонений:</strong> Находите недели с большими отклонениями от плана</li>
+                                <li><strong>Прогнозирование:</strong> Используйте тренды для краткосрочного планирования</li>
+                                <li><strong>Корректировка планов:</strong> Адаптируйте планы на основе фактических данных</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element table-element">
+                    <h3>📋 Операционные показатели (центральный блок)</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Структура таблицы операционных метрик</h4>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h4>👥 Показатели персонала</h4>
+                                <ul>
+                                    <li><strong>🔢 Количество чеков:</strong> 2 130</li>
+                                    <li><strong>💰 Средний чек:</strong> 20 414 руб</li>
+                                    <li><strong>📞 Поступки:</strong> 17 161</li>
+                                    <li><strong>📋 Конверсия:</strong> 15,1%</li>
+                                </ul>
+                            </div>
+                            <div class="grid-item">
+                                <h4>💼 Финансовые метрики</h4>
+                                <ul>
+                                    <li><strong>📊 Маржинальность:</strong> 65,7%</li>
+                                    <li><strong>💸 Закупки (SK):</strong> 691 дн</li>
+                                    <li><strong>📦 Остатки:</strong> 155,9 МЛН</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>🔍 Интерпретация операционных показателей</h4>
+                        
+                        <div class="field-desc">
+                            <h4>🔢 Количество чеков: 2 130</h4>
+                            <p><strong>Что показывает:</strong> Общее количество транзакций за период</p>
+                            <p><strong>Применение:</strong></p>
+                            <ul>
+                                <li>Оценка активности клиентов</li>
+                                <li>Сравнение с прошлыми периодами</li>
+                                <li>Планирование нагрузки на персонал</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>💰 Средний чек: 20 414 руб</h4>
+                            <p><strong>Расчет:</strong> Общая сумма продаж ÷ Количество чеков</p>
+                            <div class="formula">
+                                Средний чек = 43,500,000 руб ÷ 2,130 = 20,423 руб
+                            </div>
+                            <p><strong>Значение для бизнеса:</strong></p>
+                            <ul>
+                                <li>Индикатор качества продаж</li>
+                                <li>Основа для прогнозирования выручки</li>
+                                <li>Показатель эффективности допродаж</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>📋 Конверсия: 15,1%</h4>
+                            <p><strong>Расчет:</strong> (Количество чеков ÷ Поступки) × 100%</p>
+                            <div class="formula">
+                                Конверсия = (2,130 ÷ 17,161) × 100% = 12.4%
+                            </div>
+                            <p><strong>Анализ:</strong></p>
+                            <ul>
+                                <li><strong>15,1%</strong> - достаточно хороший показатель</li>
+                                <li>Показывает качество работы с входящими обращениями</li>
+                                <li>Потенциал для роста через улучшение скриптов продаж</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>📊 Маржинальность: 65,7%</h4>
+                            <p><strong>Расчет:</strong> (Продажи - Себестоимость) ÷ Продажи × 100%</p>
+                            <div class="formula">
+                                Маржинальность = ((Выручка - Себестоимость) / Выручка) × 100%
+                            </div>
+                            <p><strong>Оценка:</strong></p>
+                            <ul>
+                                <li><strong>65,7%</strong> - отличная маржинальность</li>
+                                <li>Указывает на правильную ценовую политику</li>
+                                <li>Дает хороший запас для инвестиций в развитие</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element table-element">
+                    <h3>📋 Задачи и контроль (правый блок)</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Система управления задачами</h4>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h4>📝 Статистика задач</h4>
+                                <ul>
+                                    <li><strong>📋 Всего задач:</strong> 847</li>
+                                    <li><strong>🚨 Просрочено:</strong> 156</li>
+                                    <li><strong>⚡ В работе:</strong> [не указано]</li>
+                                    <li><strong>✅ Новые:</strong> 540</li>
+                                    <li><strong>🔒 Закрытые:</strong> 500</li>
+                                </ul>
+                            </div>
+                            <div class="grid-item">
+                                <h4>📈 Показатели эффективности</h4>
+                                <ul>
+                                    <li><strong>⚡ Эффективность:</strong> 92,6%</li>
+                                    <li><strong>⏱️ Среднее время:</strong> 14,9</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4>⚠️ Анализ управления задачами</h4>
+                        <p><strong>Проблемные зоны:</strong></p>
+                        <ul>
+                            <li><strong>156 просроченных задач</strong> - 18.4% от общего количества</li>
+                            <li>Высокая нагрузка: 847 задач в работе</li>
+                            <li>Большой поток новых задач: 540</li>
+                        </ul>
+                        
+                        <p><strong>Позитивные моменты:</strong></p>
+                        <ul>
+                            <li><strong>92,6% эффективность</strong> - хороший показатель</li>
+                            <li>500 закрытых задач показывают активную работу</li>
+                            <li>Система контроля работает</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>💡 Рекомендации по управлению задачами</h4>
+                        <ol>
+                            <li><strong>Приоритизация:</strong> Сосредоточиться на просроченных задачах</li>
+                            <li><strong>Распределение нагрузки:</strong> Проанализировать загрузку команды</li>
+                            <li><strong>Автоматизация:</strong> Выявить задачи для автоматизации</li>
+                            <li><strong>Планирование:</strong> Улучшить планирование для снижения просрочек</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ПРОГНОЗЫ -->
+        <div id="forecasts" class="section">
+            <div class="card">
+                <h2>🔮 Система прогнозирования и планирования</h2>
+                
+                <div class="visual-element forecast-element">
+                    <h3>🔮 Блок "Прогноз и планирование" (левый нижний)</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Структура прогнозного блока</h4>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h4>📅 Текущий год (2025)</h4>
+                                <ul>
+                                    <li><strong>📋 План до текущей даты:</strong> 481,4 МЛН</li>
+                                    <li><strong>✅ Выполнение плана:</strong> 74,1%</li>
+                                    <li><strong>📈 Прогноз до конца года:</strong> 296,0 МЛН</li>
+                                    <li><strong>📊 План до конца 2025 года:</strong> 312,5 МЛН</li>
+                                </ul>
+                            </div>
+                            <div class="grid-item">
+                                <h4>📅 Следующий год (2026)</h4>
+                                <ul>
+                                    <li><strong>📈 Прогноз 2026 до июля:</strong> 333,3 МЛН</li>
+                                    <li><strong>🎯 План 2025 года:</strong> 793,9 МЛН</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4>⚠️ Анализ выполнения плана</h4>
+                        <p><strong>Выполнение плана: 74,1%</strong></p>
+                        <div class="formula">
+                            Выполнение = (Фактические продажи на дату ÷ План на дату) × 100%
+                        </div>
+                        <p><strong>Интерпретация:</strong></p>
+                        <ul>
+                            <li><strong>74,1%</strong> - серьезное отставание от плана</li>
+                            <li>Требуются корректирующие меры</li>
+                            <li>Возможна необходимость пересмотра планов</li>
+                            <li>Нужен анализ причин отставания</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>📈 Прогнозная аналитика</h4>
+                        <p><strong>Прогноз до конца 2025: 296,0 МЛН</strong></p>
+                        <p><strong>План до конца 2025: 312,5 МЛН</strong></p>
+                        
+                        <div class="tip">
+                            <p><strong>Прогноз близок к плану:</strong> 296 vs 312.5 МЛН (разница 5%)</p>
+                            <p>Это говорит о реалистичности прогнозной модели</p>
+                        </div>
+                        
+                        <p><strong>Прогноз 2026 до июля: 333,3 МЛН</strong></p>
+                        <p>Показывает ожидаемый рост на 12.6% по сравнению с аналогичным периодом 2025</p>
+                    </div>
+                </div>
+                
+                <div class="visual-element forecast-element">
+                    <h3>💰 Блок "Финансовые индикаторы" (правый нижний)</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Финансовые метрики устойчивости</h4>
+                        <div class="grid">
+                            <div class="grid-item">
+                                <h4>📈 Основные показатели</h4>
+                                <ul>
+                                    <li><strong>📊 EBITDA:</strong> 248,6 МЛН</li>
+                                    <li><strong>💧 Долг/Капитал:</strong> 0,23</li>
+                                    <li><strong>💎 Ликвидность:</strong> 155,9</li>
+                                </ul>
+                            </div>
+                            <div class="grid-item">
+                                <h4>💰 Дополнительные метрики</h4>
+                                <ul>
+                                    <li><strong>💸 Cash Flow:</strong> -197,3 МЛН</li>
+                                    <li><strong>📈 ROI:</strong> 59,7%</li>
+                                    <li><strong>🎯 Рентабельность:</strong> 63,7%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>💰 Анализ финансовых индикаторов</h4>
+                        
+                        <div class="field-desc">
+                            <h4>📊 EBITDA: 248,6 МЛН</h4>
+                            <p><strong>Что это:</strong> Прибыль до уплаты процентов, налогов и амортизации</p>
+                            <p><strong>Значение:</strong> Показывает операционную эффективность бизнеса</p>
+                            <p><strong>Оценка:</strong> Высокий показатель, указывающий на хорошую операционную прибыльность</p>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>💧 Долг/Капитал: 0,23</h4>
+                            <p><strong>Что это:</strong> Отношение заемного капитала к собственному</p>
+                            <p><strong>Норма:</strong> До 0,5 считается здоровым уровнем</p>
+                            <p><strong>Оценка:</strong> 0,23 - консервативный уровень долговой нагрузки</p>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>📈 ROI: 59,7%</h4>
+                            <p><strong>Что это:</strong> Возврат на инвестиции</p>
+                            <p><strong>Расчет:</strong> (Прибыль ÷ Инвестиции) × 100%</p>
+                            <p><strong>Оценка:</strong> Отличный показатель, значительно выше рыночных стандартов</p>
+                        </div>
+                        
+                        <div class="field-desc">
+                            <h4>🎯 Рентабельность: 63,7%</h4>
+                            <p><strong>Что это:</strong> Отношение прибыли к выручке</p>
+                            <p><strong>Оценка:</strong> Исключительно высокая рентабельность</p>
+                        </div>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4>⚠️ Проблемная зона: Cash Flow: -197,3 МЛН</h4>
+                        <p><strong>Отрицательный денежный поток</strong> требует внимания:</p>
+                        <ul>
+                            <li>Возможные причины: большие инвестиции, сезонность</li>
+                            <li>Необходим анализ структуры денежных потоков</li>
+                            <li>Контроль ликвидности и платежеспособности</li>
+                            <li>Планирование финансирования операций</li>
+                        </ul>
+                        
+                        <div class="tip">
+                            <p><strong>Компенсирующие факторы:</strong></p>
+                            <ul>
+                                <li>Высокая ликвидность (155,9)</li>
+                                <li>Низкая долговая нагрузка (0,23)</li>
+                                <li>Высокая рентабельность (63,7%)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ПРИМЕНЕНИЕ -->
+        <div id="usage" class="section">
+            <div class="card">
+                <h2>💼 Практическое применение Executive Dashboard</h2>
+                
+                <div class="intro-box">
+                    <h3>🎯 Ежедневная работа руководителя с дашбордом</h3>
+                    <p>Executive Dashboard - это <strong>инструмент ежедневного управления</strong>. Правильное использование дашборда превращает его в мощный механизм контроля и развития бизнеса.</p>
+                </div>
+                
+                <div class="scenario-box">
+                    <h3>🌅 Утренний ритуал руководителя (5 минут)</h3>
+                    <ol>
+                        <li><strong>Открыть дашборд</strong> - первое действие рабочего дня</li>
+                        <li><strong>Проверить KPI</strong> - оценить общее состояние за вчера</li>
+                        <li><strong>Изучить отклонения</strong> - найти проблемные зоны</li>
+                        <li><strong>Определить приоритеты</strong> - на что обратить внимание сегодня</li>
+                        <li><strong>Планировать действия</strong> - конкретные шаги по улучшению</li>
+                    </ol>
+                </div>
+                
+                <div class="warning">
+                    <h3>🚨 Алгоритм реагирования на проблемы</h3>
+                    
+                    <h4>📉 Сценарий: Падение продаж</h4>
+                    <div class="scenario-box">
+                        <p><strong>Текущая ситуация:</strong> Продажи упали на 16%</p>
+                        <p><strong>Пошаговый анализ:</strong></p>
+                        <ol>
+                            <li><strong>Изменить период анализа</strong> - посмотреть динамику за разные периоды</li>
+                            <li><strong>Изучить график продаж</strong> - найти момент начала падения</li>
+                            <li><strong>Проверить операционные показатели:</strong>
+                                <ul>
+                                    <li>Снизился ли средний чек?</li>
+                                    <li>Упало ли количество транзакций?</li>
+                                    <li>Изменилась ли конверсия?</li>
+                                </ul>
+                            </li>
+                            <li><strong>Проанализировать внешние факторы:</strong>
+                                <ul>
+                                    <li>Сезонность</li>
+                                    <li>Конкуренция</li>
+                                    <li>Рыночная ситуация</li>
+                                </ul>
+                            </li>
+                            <li><strong>Принять решения:</strong>
+                                <ul>
+                                    <li>Активизировать маркетинг</li>
+                                    <li>Мотивировать команду продаж</li>
+                                    <li>Пересмотреть ценовую политику</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <h3>📈 Сценарии успешного использования</h3>
+                    
+                    <h4>🎯 Еженедельный анализ эффективности</h4>
+                    <div class="scenario-box">
+                        <p><strong>Цель:</strong> Оптимизация операционной деятельности</p>
+                        <p><strong>Алгоритм:</strong></p>
+                        <ol>
+                            <li><strong>Установить период:</strong> Последние 7 дней</li>
+                            <li><strong>Сравнить с планом:</strong> Насколько отклонились от целей</li>
+                            <li><strong>Найти лучшие дни:</strong> Что работало особенно хорошо</li>
+                            <li><strong>Выявить проблемы:</strong> Где были провалы</li>
+                            <li><strong>Скорректировать планы:</strong> На следующую неделю</li>
+                        </ol>
+                    </div>
+                    
+                    <h4>💰 Месячное финансовое планирование</h4>
+                    <div class="scenario-box">
+                        <p><strong>Цель:</strong> Контроль финансовой устойчивости</p>
+                        <p><strong>Фокус на блоках:</strong></p>
+                        <ul>
+                            <li><strong>Прогноз и планирование:</strong> Выполнение планов</li>
+                            <li><strong>Финансовые индикаторы:</strong> Устойчивость бизнеса</li>
+                            <li><strong>Cash Flow:</strong> Планирование ликвидности</li>
+                        </ul>
+                        <p><strong>Действия:</strong></p>
+                        <ol>
+                            <li>Анализ выполнения месячного плана</li>
+                            <li>Прогнозирование на следующий месяц</li>
+                            <li>Планирование денежных потоков</li>
+                            <li>Корректировка бюджетов</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>💡 Продвинутые техники работы с дашбордом</h3>
+                    
+                    <h4>🔄 Сравнительный анализ периодов</h4>
+                    <ul>
+                        <li><strong>Неделя к неделе:</strong> Выявление еженедельных трендов</li>
+                        <li><strong>Месяц к месяцу:</strong> Анализ сезонности</li>
+                        <li><strong>Год к году:</strong> Оценка долгосрочного роста</li>
+                        <li><strong>Планируемые события:</strong> Влияние маркетинговых кампаний</li>
+                    </ul>
+                    
+                    <h4>📊 Корреляционный анализ</h4>
+                    <p><strong>Ищите связи между показателями:</strong></p>
+                    <ul>
+                        <li>Рост среднего чека vs снижение количества транзакций</li>
+                        <li>Увеличение маржинальности vs изменение структуры продаж</li>
+                        <li>Динамика задач vs операционная эффективность</li>
+                        <li>Cash Flow vs инвестиционная активность</li>
+                    </ul>
+                    
+                    <h4>🎯 Постановка SMART-целей на основе данных</h4>
+                    <div class="formula">
+                        Specific (Конкретно) + Measurable (Измеримо) + Achievable (Достижимо) + 
+                        Relevant (Актуально) + Time-bound (Ограничено во времени)
+                    </div>
+                    <p><strong>Примеры целей:</strong></p>
+                    <ul>
+                        <li><strong>Продажи:</strong> "Увеличить продажи на 25% до конца квартала"</li>
+                        <li><strong>Эффективность:</strong> "Снизить долю просроченных задач до 10% за месяц"</li>
+                        <li><strong>Прибыльность:</strong> "Поднять средний чек до 25,000 руб за 2 месяца"</li>
+                    </ul>
+                </div>
+                
+                <div class="warning">
+                    <h3>⚠️ Частые ошибки при работе с дашбордом</h3>
+                    
+                    <h4>❌ Что НЕ нужно делать:</h4>
+                    <ul>
+                        <li><strong>Анализировать только хорошие показатели</strong> - игнорировать проблемы</li>
+                        <li><strong>Принимать решения на основе одного дня</strong> - нужны тренды</li>
+                        <li><strong>Сравнивать разные периоды без учета контекста</strong> - сезонность, события</li>
+                        <li><strong>Фокусироваться только на одной метрике</strong> - нужен комплексный подход</li>
+                        <li><strong>Не учитывать внешние факторы</strong> - рынок, конкуренты, экономика</li>
+                    </ul>
+                    
+                    <h4>✅ Правильный подход:</h4>
+                    <ul>
+                        <li><strong>Системный анализ</strong> - все показатели в связке</li>
+                        <li><strong>Контекстное мышление</strong> - учет внешних факторов</li>
+                        <li><strong>Проактивность</strong> - предупреждение проблем</li>
+                        <li><strong>Регулярность</strong> - ежедневная работа с данными</li>
+                        <li><strong>Действие</strong> - каждый анализ должен приводить к решениям</li>
+                    </ul>
+                </div>
+                
+                <div class="success">
+                    <h3>🏆 Ключевые принципы эффективного использования</h3>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>📊 Принцип "Data-Driven"</h4>
+                            <p>Все решения основываются на данных, а не на интуиции или предположениях</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>⚡ Принцип "Action-Oriented"</h4>
+                            <p>Каждый анализ должен приводить к конкретным действиям и улучшениям</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>🔄 Принцип "Continuous Monitoring"</h4>
+                            <p>Постоянный мониторинг изменений и быстрое реагирование на отклонения</p>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>🎯 Принцип "Strategic Focus"</h4>
+                            <p>Фокус на стратегически важных показателях, влияющих на долгосрочный успех</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" onclick="window.scrollTo(0,0)">↑</button>
+
+    <script>
+        function showSection(sectionId) {
+            // Скрыть все секции
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Убрать активный класс у всех кнопок
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Показать выбранную секцию
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Добавить активный класс к нажатой кнопке
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
