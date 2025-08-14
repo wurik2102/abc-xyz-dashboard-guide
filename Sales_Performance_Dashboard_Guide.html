@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Руководство по Sales Performance Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+            min-height: 100vh; color: white; line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 3em; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); margin-bottom: 10px; }
+        .header p { font-size: 1.3em; opacity: 0.9; }
+        
+        .nav { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 30px; text-align: center; }
+        .nav-btn { 
+            background: rgba(255,255,255,0.2); color: white; border: none; 
+            padding: 12px 24px; margin: 5px; border-radius: 25px; cursor: pointer; 
+            transition: all 0.3s; font-size: 16px; 
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .nav-btn.active { background: #3498db; }
+        
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        .card { 
+            background: rgba(255,255,255,0.95); color: #333; 
+            border-radius: 16px; padding: 30px; margin: 25px 0; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-left: 5px solid #3498db;
+        }
+        .card h2 { color: #2c3e50; font-size: 2em; margin-bottom: 20px; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .card h3 { color: #34495e; margin: 20px 0 15px; }
+        
+        .visual-element { 
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+            border-radius: 12px; padding: 20px; margin: 20px 0; 
+            border-left: 5px solid #3498db; 
+        }
+        .kpi-element { border-left-color: #e74c3c; }
+        .chart-element { border-left-color: #3498db; }
+        .table-element { border-left-color: #9b59b6; }
+        .filter-element { border-left-color: #f39c12; }
+        
+        .tip { background: linear-gradient(135deg, #e8f5e8, #c8e6c9); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #27ae60; }
+        .warning { background: linear-gradient(135deg, #ffebee, #ffcdd2); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #f44336; }
+        .success { background: linear-gradient(135deg, #e8f5e8, #c8e6c9); color: #333; border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 5px solid #4caf50; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .grid-item { background: #f8f9fa; border-radius: 10px; padding: 20px; border-left: 4px solid #3498db; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .kpi-card { 
+            background: white; border-radius: 12px; padding: 20px; 
+            border-left: 5px solid #3498db; box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .field-desc { 
+            background: #fff; border-radius: 8px; padding: 15px; margin: 10px 0; 
+            border-left: 4px solid #3498db; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .formula { 
+            background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; 
+            padding: 10px; margin: 10px 0; font-family: monospace; font-size: 14px;
+        }
+        
+        .back-to-top { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #3498db; color: white; border: none; 
+            padding: 15px; border-radius: 50%; cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #e8f4fd, #bbdefb); color: #333; 
+            border-radius: 12px; padding: 25px; margin: 20px 0; 
+            border-left: 5px solid #3498db; font-size: 18px;
+        }
+        
+        .scenario-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9); 
+            border-radius: 12px; padding: 20px; margin: 15px 0; 
+            border-left: 5px solid #4caf50;
+        }
+        
+        .color-legend {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .interpretation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .interpretation-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .business-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .question-block {
+            background: #f0f8f0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #27AE60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 SALES PERFORMANCE DASHBOARD</h1>
+            <p>Полное руководство по дашборду анализа продаж</p>
+        </div>
+        
+        <div class="intro-box">
+            <h3>🎯 Назначение Sales Performance Dashboard</h3>
+            <p>Дашборд анализа продаж - это <strong>ключевой инструмент</strong> для мониторинга и управления эффективностью продаж компании. Он предоставляет комплексную картину состояния продаж, выполнения планов, операционных показателей и помогает принимать обоснованные решения для роста бизнеса.</p>
+            
+            <div class="warning" style="margin-top: 20px;">
+                <h3>📊 Что показывает дашборд (пример анализа)</h3>
+                <ul>
+                    <li><strong>💰 Продажи:</strong> XX,X МЛН руб (динамика к прошлому году)</li>
+                    <li><strong>🎯 План:</strong> XX,X МЛН руб (процент выполнения)</li>
+                    <li><strong>📈 Конверсия:</strong> XX,X% (эффективность продаж)</li>
+                    <li><strong>💰 Средний чек:</strong> XX,X тыс руб (покупательская способность)</li>
+                </ul>
+                <p><strong>Ключевая особенность:</strong> Дашборд автоматически адаптируется под выбранный период - дневная детализация для коротких периодов, недельная и месячная для долгосрочного анализа.</p>
+            </div>
+        </div>
+        
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('overview')">🏛️ Обзор дашборда</button>
+            <button class="nav-btn" onclick="showSection('periods')">📅 Управление периодами</button>
+            <button class="nav-btn" onclick="showSection('kpis')">📈 KPI карточки</button>
+            <button class="nav-btn" onclick="showSection('analytics')">📊 Аналитика продаж</button>
+            <button class="nav-btn" onclick="showSection('tables')">📋 Детализация по магазинам</button>
+            <button class="nav-btn" onclick="showSection('usage')">💼 Практическое применение</button>
+        </div>
+        
+        <!-- ОБЗОР ДАШБОРДА -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <h2>🏛️ Архитектура дашборда анализа продаж</h2>
+                
+                <div class="success">
+                    <h3>🎯 Концепция "Полного анализа продаж"</h3>
+                    <p>Дашборд спроектирован для комплексного анализа продаж на всех уровнях:</p>
+                    <ul>
+                        <li><strong>Стратегический уровень:</strong> Общие показатели выручки, планов, трендов</li>
+                        <li><strong>Тактический уровень:</strong> Операционные метрики (конверсия, средний чек, товарооборот)</li>
+                        <li><strong>Операционный уровень:</strong> Детализация по точкам продаж, товарным группам, периодам</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-element">
+                    <h3>🗂️ Структура дашборда (сверху вниз)</h3>
+                    
+                    <div class="grid">
+                        <div class="grid-item filter-element">
+                            <h4>📅 Панель фильтров</h4>
+                            <p><strong>Расположение:</strong> Правый верхний угол</p>
+                            <p><strong>Элементы:</strong></p>
+                            <ul>
+                                <li>Выбор начальной даты периода</li>
+                                <li>Выбор конечной даты периода</li>
+                                <li>Слайсеры по магазинам/товарам</li>
+                            </ul>
+                            <p><strong>Функция:</strong> Динамическая настройка анализируемого периода и фильтрации данных</p>
+                        </div>
+                        
+                        <div class="grid-item kpi-element">
+                            <h4>📊 Верхний ряд - Ключевые KPI</h4>
+                            <p><strong>4 основные карточки:</strong></p>
+                            <ul>
+                                <li>💰 Продажи - фактическая выручка</li>
+                                <li>🎯 План - целевые показатели</li>
+                                <li>📈 Сравнение по годам - многолетняя динамика</li>
+                                <li>⚡ Эффективность продаж - комплексные показатели</li>
+                            </ul>
+                            <p><strong>Особенность:</strong> Автоматическое сравнение с прошлыми периодами</p>
+                        </div>
+                        
+                        <div class="grid-item chart-element">
+                            <h4>📈 Центральный график - Трендовый анализ</h4>
+                            <p><strong>Трёхлинейный график:</strong></p>
+                            <ul>
+                                <li>Фактические продажи (основная линия)</li>
+                                <li>Плановые показатели (целевая линия)</li>
+                                <li>Продажи прошлого года (сравнительная линия)</li>
+                            </ul>
+                            <p><strong>Адаптивность:</strong> Автоматическая детализация по дням/неделям/месяцам</p>
+                        </div>
+                        
+                        <div class="grid-item table-element">
+                            <h4>📋 Таблица магазинов - Детальная аналитика</h4>
+                            <p><strong>Показатели по каждой точке:</strong></p>
+                            <ul>
+                                <li>Выручка и выполнение плана</li>
+                                <li>Средний чек и количество транзакций</li>
+                                <li>Рост относительно прошлого года</li>
+                                <li>Цветовая индикация эффективности</li>
+                            </ul>
+                            <p><strong>Назначение:</strong> Выявление лидеров и аутсайдеров среди точек продаж</p>
+                        </div>
+                        
+                        <div class="grid-item kpi-element">
+                            <h4>📊 Нижний ряд - Операционные показатели</h4>
+                            <p><strong>Дополнительные метрики:</strong></p>
+                            <ul>
+                                <li>📦 Товарооборот в штуках</li>
+                                <li>💰 Средний чек</li>
+                                <li>📈 Конверсия покупателей</li>
+                                <li>🔄 Резерв для расширения</li>
+                            </ul>
+                            <p><strong>Функция:</strong> Углубленный анализ факторов, влияющих на продажи</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>🎨 Принципы дизайна дашборда</h3>
+                    <ul>
+                        <li><strong>Иерархия информации:</strong> От общих KPI к детализации</li>
+                        <li><strong>Цветовая индикация:</strong> 🟢 Хорошо, 🟡 Внимание, 🔴 Проблемы</li>
+                        <li><strong>Интерактивность:</strong> Фильтры и срезы для углубленного анализа</li>
+                        <li><strong>Адаптивность:</strong> Автоматическая группировка данных по периодам</li>
+                        <li><strong>Сравнительный анализ:</strong> Всегда в контексте планов и прошлых периодов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- УПРАВЛЕНИЕ ПЕРИОДАМИ -->
+        <div id="periods" class="section">
+            <div class="card">
+                <h2>📅 Управление временными периодами</h2>
+                
+                <div class="visual-element filter-element">
+                    <h3>🎛️ Слайсеры дат</h3>
+                    <p><strong>Расположение:</strong> Правый верхний угол дашборда</p>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>📅 Начальная дата</h4>
+                            <ul>
+                                <li>Календарный селектор для выбора даты начала</li>
+                                <li>По умолчанию: начало текущего месяца</li>
+                                <li>Возможность выбора любой даты из доступного диапазона</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>📅 Конечная дата</h4>
+                            <ul>
+                                <li>Календарный селектор для выбора даты окончания</li>
+                                <li>По умолчанию: текущая дата</li>
+                                <li>Ограничение: не может быть раньше начальной даты</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <h3>⚡ Автоматическая адаптация визуализаций</h3>
+                    
+                    <div class="scenario-box">
+                        <h4>📊 Логика детализации графика</h4>
+                        <ul>
+                            <li><strong>≤31 день:</strong> Дневная детализация
+                                <p><em>Пример: 01-31 июля → каждая точка = день</em></p>
+                            </li>
+                            <li><strong>32-120 дней:</strong> Недельная группировка
+                                <p><em>Пример: 3 месяца → каждая точка = неделя</em></p>
+                            </li>
+                            <li><strong>>120 дней:</strong> Месячная группировка
+                                <p><em>Пример: год → каждая точка = месяц</em></p>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="field-desc">
+                        <h4>🔧 Техническая реализация</h4>
+                        <div class="formula">Smart_Sales = 
+IF (
+    DATEDIFF(MIN(Календарь[Date]), MAX(Календарь[Date]), DAY) <= 31,
+    [Продажи_по_дням],
+    IF (
+        DATEDIFF(MIN(Календарь[Date]), MAX(Календарь[Date]), DAY) <= 120,
+        [Продажи_по_неделям],
+        [Продажи_по_месяцам]
+    )
+)</div>
+                        <p><strong>Преимущество:</strong> Оптимальная читаемость графиков при любом выбранном периоде</p>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>💡 Рекомендации по выбору периодов</h3>
+                    <ul>
+                        <li><strong>Оперативный анализ:</strong> 7-14 дней для контроля текущих результатов</li>
+                        <li><strong>Тактический анализ:</strong> Месяц для оценки выполнения планов</li>
+                        <li><strong>Стратегический анализ:</strong> Квартал/год для выявления трендов</li>
+                        <li><strong>Сравнительный анализ:</strong> Аналогичные периоды разных лет</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KPI КАРТОЧКИ -->
+        <div id="kpis" class="section">
+            <div class="card">
+                <h2>📈 KPI карточки - Ключевые показатели эффективности</h2>
+                
+                <div class="visual-element kpi-element">
+                    <h3>📊 Верхний ряд - Основные показатели</h3>
+                    
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <h4>💰 ПРОДАЖИ</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Общая выручка за выбранный период</p>
+                                <div class="formula">Продажи_руб = SUM(продажи[Стоимость])</div>
+                                <p><strong>Сравнение:</strong> Автоматическое сравнение с аналогичным периодом прошлого года</p>
+                                <p><strong>Индикаторы:</strong></p>
+                                <ul>
+                                    <li>🟢 Рост к прошлому году >5%</li>
+                                    <li>🟡 Стабильность ±5%</li>
+                                    <li>🔴 Снижение >5%</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>🎯 ПЛАН</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Плановые показатели на выбранный период</p>
+                                <div class="formula">План_продаж = SUM('План продаж'[Значение])</div>
+                                <p><strong>Выполнение:</strong> (Факт ÷ План) × 100%</p>
+                                <p><strong>Цветовая индикация:</strong></p>
+                                <ul>
+                                    <li>🟢 >100% - перевыполнение</li>
+                                    <li>🟡 80-100% - близко к плану</li>
+                                    <li>🔴 <80% - недовыполнение</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>📊 СРАВНЕНИЕ ПО ГОДАМ</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Многолетняя динамика продаж</p>
+                                <div class="formula">Продажи_по_годам = 
+CALCULATE([Продажи_руб], 
+    FILTER(Календарь, Календарь[год] = [Выбранный_год]))</div>
+                                <p><strong>Анализ:</strong> Показывает рост/падение по сравнению с каждым из предыдущих лет</p>
+                                <p><strong>Использование:</strong> Оценка долгосрочных трендов и стабильности роста</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>⚡ ЭФФЕКТИВНОСТЬ ПРОДАЖ</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Комплексные операционные показатели</p>
+                                <p><strong>Составляющие:</strong></p>
+                                <ul>
+                                    <li>👥 Количество чеков</li>
+                                    <li>💰 Средний чек</li>
+                                    <li>📋 Выполнение плана (%)</li>
+                                    <li>👥 Количество посетителей</li>
+                                </ul>
+                                <div class="formula">HTML карточка с динамическим содержимым на основе OperationalIndicators_HTML</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visual-element kpi-element">
+                    <h3>📊 Нижний ряд - Операционные показатели</h3>
+                    
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <h4>📦 ТОВАРООБОРОТ</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Количество проданного товара в штуках</p>
+                                <div class="formula">Товарооборот_шт = SUM(продажи[Количество])</div>
+                                <p><strong>Значение:</strong> Физический объем продаж, независимый от ценовых изменений</p>
+                                <p><strong>Интерпретация:</strong></p>
+                                <ul>
+                                    <li>Снижение → проблемы с ассортиментом/спросом</li>
+                                    <li>Рост → увеличение потока/лояльности</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>💰 СРЕДНИЙ ЧЕК</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Средняя сумма одной покупки</p>
+                                <div class="formula">Средний_чек = [Продажи_руб] ÷ [Количество_чеков]</div>
+                                <p><strong>Факторы влияния:</strong> Цены, покупательная способность, качество продаж</p>
+                                <p><strong>Анализ в связке:</strong></p>
+                                <ul>
+                                    <li>↑ Средний чек + ↓ Чеки = рост цен/премиализация</li>
+                                    <li>↓ Средний чек + ↑ Чеки = массовость/доступность</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>📈 КОНВЕРСИЯ</h4>
+                            <div class="field-desc">
+                                <p><strong>Что показывает:</strong> Доля покупателей от общего количества посетителей</p>
+                                <div class="formula">Конверсия = (Количество_чеков ÷ Посетители) × 100%</div>
+                                <p><strong>Эталонные значения:</strong></p>
+                                <ul>
+                                    <li>🟢 >15% - отличная конверсия</li>
+                                    <li>🟡 10-15% - хорошая конверсия</li>
+                                    <li>🔴 <10% - требует улучшения</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <h4>🔄 ДОПОЛНИТЕЛЬНЫЕ МЕТРИКИ</h4>
+                            <div class="field-desc">
+                                <p><strong>Возможные показатели:</strong></p>
+                                <ul>
+                                    <li>📈 LFL продажи (Like-for-Like рост)</li>
+                                    <li>👥 Количество посетителей</li>
+                                    <li>📊 Маржинальность продаж</li>
+                                    <li>🎯 Выполнение планов (%)</li>
+                                </ul>
+                                <p><strong>Настройка:</strong> Замените на наиболее важный для бизнеса показатель</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- АНАЛИТИКА ПРОДАЖ -->
+        <div id="analytics" class="section">
+            <div class="card">
+                <h2>📊 Центральный график - Аналитика продаж</h2>
+                
+                <div class="visual-element chart-element">
+                    <h3>📈 Трёхлинейный график динамики</h3>
+                    
+                    <div class="color-legend">
+                        <div class="color-item">
+                            <div class="color-dot" style="background-color: #9B59B6;"></div>
+                            <span><strong>Продажи (факт)</strong> - фактические продажи текущего периода</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-dot" style="background-color: #E74C3C;"></div>
+                            <span><strong>План продаж</strong> - плановые показатели</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-dot" style="background-color: #3498DB;"></div>
+                            <span><strong>Продажи прошлый год</strong> - аналогичный период предыдущего года</span>
+                        </div>
+                    </div>
+                    
+                    <div class="field-desc">
+                        <h4>🔧 Логика построения графика</h4>
+                        <div class="formula">Ось X: Календарь[Date] (адаптивная детализация)
+Продажи = Smart_Sales (умная мера с автодетализацией)
+План = Smart_Plan (плановые показатели)
+Прошлый год = Smart_Sales_Previous (SAMEPERIODLASTYEAR)</div>
+                        <p><strong>Адаптивность:</strong> График автоматически меняет детализацию в зависимости от длины выбранного периода</p>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <h3>🔍 Интерпретация графика</h3>
+                    
+                    <div class="interpretation-grid">
+                        <div class="interpretation-item">
+                            <h4>🟢 Положительные сценарии</h4>
+                            <ul>
+                                <li><strong>Фиолетовая линия выше красной:</strong> План перевыполняется</li>
+                                <li><strong>Фиолетовая линия выше синей:</strong> Рост к прошлому году</li>
+                                <li><strong>Восходящий тренд:</strong> Устойчивое развитие</li>
+                                <li><strong>Стабильность выше плана:</strong> Предсказуемый рост</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="interpretation-item">
+                            <h4>🟡 Требует внимания</h4>
+                            <ul>
+                                <li><strong>План не выполняется, но есть рост к прошлому году:</strong> Пересмотр планирования</li>
+                                <li><strong>Волнообразные тренды:</strong> Нестабильность, анализ причин</li>
+                                <li><strong>Сезонные колебания:</strong> Нормально, но требует учёта в планах</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="interpretation-item">
+                            <h4>🔴 Критические ситуации</h4>
+                            <ul>
+                                <li><strong>Фиолетовая ниже всех линий:</strong> Недовыполнение плана + спад</li>
+                                <li><strong>Устойчивый нисходящий тренд:</strong> Системные проблемы</li>
+                                <li><strong>Большой разрыв с планом:</strong> Нереалистичное планирование</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>📖 Алгоритм анализа графика</h3>
+                    <ol>
+                        <li><strong>Общий тренд:</strong> Определите направление движения основной линии</li>
+                        <li><strong>Сравнение с планом:</strong> Оцените систематичность отклонений</li>
+                        <li><strong>Годовая динамика:</strong> Сопоставьте с результатами прошлого года</li>
+                        <li><strong>Точки перелома:</strong> Найдите моменты резких изменений</li>
+                        <li><strong>Сезонность:</strong> Учтите календарные факторы</li>
+                        <li><strong>Прогнозирование:</strong> Экстраполируйте тренды на будущее</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ДЕТАЛИЗАЦИЯ ПО МАГАЗИНАМ -->
+        <div id="tables" class="section">
+            <div class="card">
+                <h2>📋 Таблица магазинов - Детальная аналитика</h2>
+                
+                <div class="visual-element table-element">
+                    <h3>🏪 Показатели по точкам продаж</h3>
+                    
+                    <div class="field-desc">
+                        <h4>📊 Структура таблицы</h4>
+                        <ul>
+                            <li><strong>Магазин:</strong> Название/код точки продаж</li>
+                            <li><strong>Продажи:</strong> Фактическая выручка</li>
+                            <li><strong>План:</strong> Плановые показатели</li>
+                            <li><strong>План %:</strong> Процент выполнения плана</li>
+                            <li><strong>Отклонение:</strong> Абсолютное отклонение от плана</li>
+                            <li><strong>Средний чек:</strong> Средняя сумма покупки</li>
+                            <li><strong>Рост YoY %:</strong> Рост к аналогичному периоду прошлого года</li>
+                            <li><strong>Plan_Status:</strong> Цветовой индикатор статуса</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <h4>🎨 Цветовая индикация Plan_Status</h4>
+                        <ul>
+                            <li><strong style="color: #155724; background: #d4edda; padding: 2px 6px; border-radius: 4px;">Отлично</strong> - Выполнение плана >110%</li>
+                            <li><strong style="color: #856404; background: #fff3cd; padding: 2px 6px; border-radius: 4px;">Хорошо</strong> - Выполнение плана 90-110%</li>
+                            <li><strong style="color: #721c24; background: #f8d7da; padding: 2px 6px; border-radius: 4px;">Внимание</strong> - Выполнение плана <90%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>🔍 Практические применения таблицы</h3>
+                    <ul>
+                        <li><strong>Ранжирование магазинов:</strong> Сортировка по % выполнения плана</li>
+                        <li><strong>Выявление лидеров:</strong> Магазины с высоким ростом YoY</li>
+                        <li><strong>Проблемные точки:</strong> Фокус на красные индикаторы</li>
+                        <li><strong>Бенчмаркинг:</strong> Сравнение показателей лучших и худших</li>
+                        <li><strong>Планирование:</strong> Корректировка планов на основе возможностей</li>
+                    </ul>
+                </div>
+                
+                <div class="warning">
+                    <h3>⚠️ Сценарии для анализа</h3>
+                    
+                    <div class="scenario-box">
+                        <h4>📈 Высокие продажи + низкий план %</h4>
+                        <p><strong>Интерпретация:</strong> Магазин показывает хорошие абсолютные результаты, но план был переоценён</p>
+                        <p><strong>Действия:</strong> Пересмотр планирования, анализ потенциала точки</p>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>💰 Высокий средний чек + отрицательный YoY</h4>
+                        <p><strong>Интерпретация:</strong> Рост цен компенсирует снижение количества покупателей</p>
+                        <p><strong>Действия:</strong> Работа над привлечением трафика, анализ ценовой политики</p>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🔴 Стабильно красный статус</h4>
+                        <p><strong>Интерпретация:</strong> Системные проблемы точки продаж</p>
+                        <p><strong>Действия:</strong> Глубокий анализ: локация, персонал, ассортимент, конкуренция</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ПРАКТИЧЕСКОЕ ПРИМЕНЕНИЕ -->
+        <div id="usage" class="section">
+            <div class="card">
+                <h2>💼 Практическое применение дашборда</h2>
+                
+                <div class="success">
+                    <h3>🎯 Ключевые бизнес-вопросы</h3>
+                    
+                    <div class="business-questions">
+                        <div class="question-block">
+                            <h4>📈 Эффективность продаж</h4>
+                            <ul>
+                                <li>Выполняем ли мы планы продаж?</li>
+                                <li>Какая динамика продаж относительно прошлого года?</li>
+                                <li>Какие точки показывают лучшие результаты?</li>
+                                <li>Где мы теряем выручку?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="question-block">
+                            <h4>👥 Клиентская база</h4>
+                            <ul>
+                                <li>Растет ли поток посетителей?</li>
+                                <li>Улучшается ли конверсия в покупатели?</li>
+                                <li>Как изменяется покупательская способность?</li>
+                                <li>Эффективна ли работа с клиентами?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="question-block">
+                            <h4>🔍 Операционная эффективность</h4>
+                            <ul>
+                                <li>Какие периоды наиболее эффективны?</li>
+                                <li>Есть ли сезонные паттерны?</li>
+                                <li>Где необходимы корректирующие действия?</li>
+                                <li>Как оптимизировать работу точек?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <h3>📋 Регламент работы с дашбордом</h3>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>📅 Ежедневный мониторинг</h4>
+                            <ul>
+                                <li>Проверка KPI верхнего ряда</li>
+                                <li>Анализ вчерашних продаж на графике</li>
+                                <li>Контроль выполнения плана</li>
+                                <li>Выявление аномалий</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>📊 Еженедельный анализ</h4>
+                            <ul>
+                                <li>Детальный анализ трендов</li>
+                                <li>Ранжирование магазинов по эффективности</li>
+                                <li>Анализ причин отклонений</li>
+                                <li>Планирование корректирующих мер</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>📈 Месячная отчётность</h4>
+                            <ul>
+                                <li>Комплексная оценка результатов</li>
+                                <li>Сравнение с планами и прошлыми периодами</li>
+                                <li>Выявление трендов и закономерностей</li>
+                                <li>Корректировка стратегии</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grid-item">
+                            <h4>🎯 Стратегическое планирование</h4>
+                            <ul>
+                                <li>Анализ годовых трендов</li>
+                                <li>Планирование на следующие периоды</li>
+                                <li>Оценка эффективности мероприятий</li>
+                                <li>Развитие сети точек продаж</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning">
+                    <h3>🚨 Алгоритм реагирования на критические ситуации</h3>
+                    
+                    <div class="scenario-box">
+                        <h4>🔴 План выполняется менее чем на 80%</h4>
+                        <p><strong>Немедленные действия:</strong></p>
+                        <ol>
+                            <li>Анализ таблицы магазинов - выявление проблемных точек</li>
+                            <li>Проверка операционных показателей (конверсия, средний чек)</li>
+                            <li>Сравнение с прошлогодними данными</li>
+                            <li>Разработка плана корректирующих мероприятий</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>📉 Устойчивое снижение продаж >10%</h4>
+                        <p><strong>План анализа:</strong></p>
+                        <ol>
+                            <li>Определение: общесистемная проблема или локальная?</li>
+                            <li>Анализ внешних факторов (сезонность, конкуренция, экономика)</li>
+                            <li>Проверка внутренних процессов (ассортимент, цены, сервис)</li>
+                            <li>Разработка антикризисных мер</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <h3>✅ Лучшие практики использования</h3>
+                    <ul>
+                        <li><strong>Комплексный анализ:</strong> Всегда рассматривайте показатели в связке</li>
+                        <li><strong>Контекстное понимание:</strong> Учитывайте внешние факторы и сезонность</li>
+                        <li><strong>Фокус на трендах:</strong> Важнее направление изменения, чем абсолютные значения</li>
+                        <li><strong>Быстрое реагирование:</strong> Не откладывайте анализ критических сигналов</li>
+                        <li><strong>Обратная связь:</strong> Отслеживайте результаты принятых мер</li>
+                        <li><strong>Развитие экспертизы:</strong> Накапливайте опыт интерпретации данных</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" onclick="window.scrollTo(0,0)">↑</button>
+
+    <script>
+        function showSection(sectionId) {
+            // Скрыть все секции
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Убрать активный класс у всех кнопок
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Показать выбранную секцию
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Добавить активный класс к нажатой кнопке
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
