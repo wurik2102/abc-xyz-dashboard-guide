@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция пользователя - Executive Dashboard Call BI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1a237e, #3f51b5);
+            color: white;
+            padding: 30px;
+            margin: -30px -30px 30px -30px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section {
+            margin: 40px 0;
+            padding: 25px;
+            border-left: 5px solid #1a237e;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .section h2 {
+            color: #1a237e;
+            margin-top: 0;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+        }
+        .section h3 {
+            color: #37474f;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        .icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        .metric-card {
+            display: inline-block;
+            margin: 15px 10px;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .quality-card { background: #fdf2e9; border: 2px solid #e67e22; }
+        .positive-card { background: #e8f5e8; border: 2px solid #4caf50; }
+        .solutions-card { background: #fff3e0; border: 2px solid #ff9800; }
+        .duration-card { background: #f3e5f5; border: 2px solid #9c27b0; }
+        .calls-card { background: #e3f2fd; border: 2px solid #1565c0; }
+        .confidence-card { background: #f3e5f5; border: 2px solid #6a1b9a; }
+
+        .metric-title {
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .metric-description {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .formula {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tip {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .health-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .health-quality { background: #fdf2e9; color: #e67e22; }
+        .health-sentiment { background: #fff3e0; color: #ff9800; }
+        .health-efficiency { background: #e3f2fd; color: #1565c0; }
+        .health-technology { background: #e8f5e8; color: #27ae60; }
+        .health-time { background: #f3e5f5; color: #6a1b9a; }
+        .health-rating { background: #fff3e0; color: #ff6f00; }
+
+        .action-list {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .action-list h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .action-list ul {
+            margin: 10px 0;
+        }
+
+        .action-list li {
+            margin: 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #1a237e;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Executive Dashboard</h1>
+            <p>Руководство пользователя по дашборду анализа звонков Call BI</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎯</span>Что вы видите на дашборде</h2>
+            <p>Executive Dashboard — это инструмент для руководителей, который показывает <strong>реальные цифры</strong> эффективности телефонных звонков. <strong>Все показатели обновляются каждый день</strong> по мере поступления новых звонков.</p>
+
+            <div class="warning">
+                <strong>⚠️ Важно понимать:</strong> Цифры на дашборде — это не статичные данные, а живая картина работы вашей команды. Каждый новый звонок может изменить эти показатели.
+            </div>
+
+            <h3>Что происходит с данными:</h3>
+            <ol>
+                <li><strong>📞 Звонок завершается</strong> в Bitrix24 CRM</li>
+                <li><strong>🎙️ ИИ распознаёт речь</strong> (Yandex SpeechKit)</li>
+                <li><strong>🧠 ИИ анализирует качество</strong> (YandexGPT)</li>
+                <li><strong>💾 Данные сохраняются</strong> в MS SQL Server</li>
+                <li><strong>📊 Дашборд обновляется</strong> каждые 30 минут</li>
+            </ol>
+
+            <h3>Источники данных:</h3>
+            <ul>
+                <li><strong>Bitrix24 CRM</strong> — исходные данные о звонках</li>
+                <li><strong>Yandex SpeechKit</strong> — автоматическое распознавание речи</li>
+                <li><strong>YandexGPT</strong> — ИИ-анализ тональности и качества</li>
+                <li><strong>MS SQL Server</strong> — хранилище обработанных данных</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📈</span>Основные KPI (ключевые показатели)</h2>
+            <p>В верхней части дашборда расположены 6 основных показателей эффективности. <strong>Эти цифры обновляются каждый день</strong> в зависимости от новых звонков.</p>
+
+            <div class="warning">
+                <strong>⚠️ Важно:</strong> Все показатели рассчитываются для выбранного периода отчёта (день, неделя, месяц). При интерпретации данных обязательно учитывайте временной диапазон!
+            </div>
+
+            <div class="metric-card quality-card">
+                <div class="metric-title">ОБЩИЙ УРОВЕНЬ КАЧЕСТВА ОБСЛУЖИВАНИЯ</div>
+                <div class="metric-value">5.9</div>
+                <div class="metric-description">Цель: 8.0 | Требует внимания</div>
+            </div>
+
+            <div class="metric-card positive-card">
+                <div class="metric-title">УДОВЛЕТВОРЁННОСТЬ КЛИЕНТОВ</div>
+                <div class="metric-value">71.1%</div>
+                <div class="metric-description">Цель: 80% | Близко к цели</div>
+            </div>
+
+            <div class="metric-card solutions-card">
+                <div class="metric-title">РЕЗУЛЬТАТИВНОСТЬ ЗВОНКОВ</div>
+                <div class="metric-value">27.3%</div>
+                <div class="metric-description">Цель: 70% | Ниже цели</div>
+            </div>
+
+            <div class="metric-card duration-card">
+                <div class="metric-title">ЭФФЕКТИВНОСТЬ ВРЕМЕНИ</div>
+                <div class="metric-value">1.8 мин</div>
+                <div class="metric-description">Оптимально: 3-7 мин | Короткие звонки</div>
+            </div>
+
+            <div class="metric-card confidence-card">
+                <div class="metric-title">НАГРУЗКА НА СОТРУДНИКА</div>
+                <div class="metric-value">76.2</div>
+                <div class="metric-description">Оптимально: 25-35 | Высокая загрузка</div>
+            </div>
+
+            <div class="metric-card calls-card">
+                <div class="metric-title">ОБЩАЯ АКТИВНОСТЬ</div>
+                <div class="metric-value">1904</div>
+                <div class="metric-description">План: 2000 | Близко к плану</div>
+            </div>
+
+            <h3>Расшифровка показателей:</h3>
+
+            <h4>1. Общий уровень качества обслуживания</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> AVERAGE(quality_overall_score)<br>
+                <strong>Диапазон:</strong> 0.0-10.0 баллов<br>
+                <strong>Источник:</strong> EnhancedQualityAnalyzer ИИ-система<br>
+                <strong>Поле в БД:</strong> quality_overall_score
+            </div>
+            <p><strong>Что означает:</strong> Искусственный интеллект анализирует каждый звонок по 7 критериям профессионализма и выставляет общую оценку от 0 до 10 баллов.</p>
+
+            <div class="tip">
+                <strong>🧠 Как ИИ оценивает качество:</strong>
+                <ul>
+                    <li><strong>👋 Приветствие</strong> — стандартное представление компании и сотрудника</li>
+                    <li><strong>🎓 Профессионализм</strong> — вежливость, компетентность, профессиональная лексика</li>
+                    <li><strong>🔧 Решение проблем</strong> — активность в поиске решений, предложение альтернатив</li>
+                    <li><strong>💬 Коммуникация</strong> — ясность изложения, структурированность речи</li>
+                    <li><strong>👋 Завершение</strong> — корректное закрытие разговора, подведение итогов</li>
+                    <li><strong>❤️ Эмпатия</strong> — понимание и поддержка клиента</li>
+                    <li><strong>⚡ Эффективность</strong> — достижение целей разговора</li>
+                </ul>
+            </div>
+
+            <p><strong>Как повлиять на показатель:</strong></p>
+            <ul>
+                <li><strong>📈 Повышает оценку:</strong> "Я помогу вам найти решение" (+2.5 балла), "Понимаю ваше беспокойство" (+2.0 балла)</li>
+                <li><strong>📉 Снижает оценку:</strong> "Не знаю, может быть..." (-2.0 балла), частые прерывания клиента (-1.5 балла)</li>
+                <li><strong>🎯 При значении &lt;6:</strong> Срочно провести аудит качества, обучение сотрудников</li>
+                <li><strong>🎯 При значении 6-7:</strong> Целевое улучшение слабых мест</li>
+                <li><strong>🎯 При значении &gt;8:</strong> Поддерживать текущий уровень, транслировать лучшие практики</li>
+            </ul>
+
+            <h4>2. Удовлетворённость клиентов</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> (COUNT(overall_sentiment = "positive") / COUNT(all_calls)) × 100%<br>
+                <strong>Источник:</strong> Dostoevsky/RuBERT-sentiment ИИ<br>
+                <strong>Поле в БД:</strong> overall_sentiment
+            </div>
+            <p><strong>Что означает:</strong> ИИ анализирует эмоциональную окраску всего разговора и определяет, был ли клиент доволен общением. Показывает процент звонков с позитивной тональностью.</p>
+
+            <div class="tip">
+                <strong>😊 Что ИИ считает позитивным:</strong>
+                <ul>
+                    <li>Клиент выражает благодарность</li>
+                    <li>Успешное решение проблемы</li>
+                    <li>Дружелюбный тон общения</li>
+                    <li>Согласие на предложения</li>
+                    <li>Позитивные отзывы о компании</li>
+                </ul>
+            </div>
+
+            <p><strong>Как повлиять на показатель:</strong></p>
+            <ul>
+                <li><strong>📈 Повышает позитивность:</strong> Проявляйте энтузиазм, решайте проблемы вместо отказов, завершайте звонки на позитивной ноте</li>
+                <li><strong>📉 Снижает позитивность:</strong> Конфликтные ситуации, отказы без альтернатив, грубый тон</li>
+                <li><strong>🎯 При значении &lt;60%:</strong> Анализ причин негатива, работа с возражениями</li>
+                <li><strong>🎯 При значении 60-80%:</strong> Улучшение техник работы с клиентами</li>
+                <li><strong>🎯 При значении &gt;80%:</strong> Отличный результат, изучить и тиражировать подходы</li>
+            </ul>
+
+            <h4>3. Результативность звонков</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> (COUNT(результативные исходы) / COUNT(all_calls)) × 100%<br>
+                <strong>Источник:</strong> YandexGPT классификация поля call_outcome<br>
+                <strong>Поле в БД:</strong> call_outcome
+            </div>
+            <p><strong>Что означает:</strong> Показывает процент звонков, которые завершились конкретным результатом. ИИ анализирует итог разговора и определяет, был ли достигнут результат.</p>
+
+            <div class="tip">
+                <strong>🎯 Что ИИ считает результативным:</strong>
+                <ul>
+                    <li><strong>"Заказ оформлен"</strong> — клиент сделал покупку</li>
+                    <li><strong>"Консультация проведена"</strong> — дана полная консультация</li>
+                    <li><strong>"Проблема решена"</strong> — вопрос клиента решён</li>
+                    <li><strong>Содержащие "оформлен" или "проведена"</strong> — любые варианты этих слов</li>
+                </ul>
+            </div>
+
+            <p><strong>Как повлиять на показатель:</strong></p>
+            <ul>
+                <li><strong>📈 Повышает результативность:</strong> Фокусируйтесь на конкретных результатах, задавайте уточняющие вопросы, предлагайте альтернативы при отказе</li>
+                <li><strong>📉 Снижает результативность:</strong> Общие разговоры без цели, отказы без предложения альтернатив</li>
+                <li><strong>🎯 При значении &lt;50%:</strong> Пересмотр процессов продаж, обучение завершению сделок</li>
+                <li><strong>🎯 При значении 50-70%:</strong> Работа с техниками закрытия, CRM-процессами</li>
+                <li><strong>🎯 При значении &gt;70%:</strong> Хороший результат, фокус на качество решений</li>
+            </ul>
+
+            <h4>4. Эффективность времени</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> AVERAGE(time_call) в минутах<br>
+                <strong>Источник:</strong> Метаданные Bitrix24<br>
+                <strong>Поле в БД:</strong> time_call
+            </div>
+            <p><strong>Что означает:</strong> Средняя продолжительность разговора с клиентами. Показывает, сколько времени в среднем тратится на один звонок.</p>
+
+            <div class="tip">
+                <strong>⏱️ Оптимальные диапазоны времени:</strong>
+                <ul>
+                    <li><strong>1-3 минуты:</strong> Простые вопросы, справки</li>
+                    <li><strong>3-7 минут:</strong> Продажи и консультации (оптимально)</li>
+                    <li><strong>7+ минут:</strong> Сложные случаи, детальные консультации</li>
+                </ul>
+            </div>
+
+            <p><strong>Как повлиять на показатель:</strong></p>
+            <ul>
+                <li><strong>📈 Оптимизировать время:</strong> Структурируйте разговор заранее, задавайте целенаправленные вопросы, избегайте лишних отступлений</li>
+                <li><strong>⚖️ Баланс:</strong> Не торопитесь, но и не затягивайте — важно качество, а не скорость</li>
+                <li><strong>🎯 При значении &lt;2 мин:</strong> Возможно, слишком быстрое завершение, недостаточная работа с клиентом</li>
+                <li><strong>🎯 При значении 2-5 мин:</strong> Оптимальный диапазон для большинства звонков</li>
+                <li><strong>🎯 При значении &gt;8 мин:</strong> Возможно, неэффективность или сложные случаи</li>
+            </ul>
+
+            <h4>5. Нагрузка на сотрудника</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> COUNT(all_calls) / DISTINCTCOUNT(manager_name)<br>
+                <strong>Источник:</strong> Агрегация из CRM данных<br>
+                <strong>Поля в БД:</strong> call_id, manager_name
+            </div>
+            <p><strong>Что означает:</strong> Среднее количество звонков, обработанных одним сотрудником за период. Показатель загруженности команды и распределения нагрузки.</p>
+
+            <div class="tip">
+                <strong>👥 Индикатор загруженности (в зависимости от периода):</strong>
+                <ul>
+                    <li><strong>За день:</strong> 5-15 звонков — оптимально, &gt;20 — перегрузка</li>
+                    <li><strong>За неделю:</strong> 25-75 звонков — оптимально, &gt;100 — перегрузка</li>
+                    <li><strong>За месяц:</strong> 100-300 звонков — оптимально, &gt;400 — перегрузка</li>
+                    <li><strong>Важно:</strong> Показатель зависит от выбранного периода отчёта в дашборде</li>
+                </ul>
+            </div>
+
+
+
+            <p><strong>Как повлиять на показатель:</strong></p>
+            <ul>
+                <li><strong>📊 Действия руководителя:</strong> Перераспределение нагрузки, планирование ресурсов, анализ эффективности процессов</li>
+                <li><strong>🎯 При низкой загрузке:</strong> Перераспределение задач, увеличение активности</li>
+                <li><strong>🎯 При оптимальной загрузке:</strong> Поддержание текущего уровня</li>
+                <li><strong>🎯 При перегрузке:</strong> Снижение нагрузки, найм дополнительных сотрудников</li>
+                <li><strong>⚠️ Учитывайте период:</strong> 76.2 звонка на менеджера может быть нормально за месяц, но критично за день</li>
+            </ul>
+
+            <h4>6. Общая активность</h4>
+            <div class="formula">
+                <strong>Формула Power BI:</strong> COUNT(call_id)<br>
+                <strong>Источник:</strong> Прямой подсчёт записей БД<br>
+                <strong>Поле в БД:</strong> call_id
+            </div>
+            <p><strong>Что означает:</strong> Общее количество телефонных звонков за выбранный период. Показатель активности отдела продаж/поддержки и объёма работы.</p>
+
+            <div class="tip">
+                <strong>📊 Индикатор активности:</strong>
+                <ul>
+                    <li>Показывает объём работы отдела</li>
+                    <li>Основа для расчёта других метрик</li>
+                    <li>Тренды по дням/неделям/месяцам</li>
+                    <li>Сравнение с планами и целями</li>
+                </ul>
+            </div>
+
+            <p><strong>Как использовать показатель:</strong></p>
+            <ul>
+                <li><strong>📈 Планирование ресурсов:</strong> Отслеживать динамику по дням/неделям/месяцам</li>
+                <li><strong>📊 Прогнозирование нагрузки:</strong> Сравнивать с планами и целями</li>
+                <li><strong>📋 Анализ трендов:</strong> Анализировать сезонность и тренды</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📊</span>Индекс здоровья бизнеса</h2>
+            <p>Комплексная оценка эффективности по 6 ключевым направлениям:</p>
+
+            <div class="health-grid">
+                <div class="health-card health-quality">
+                    <h4>Качество</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">5.9</div>
+                    <small>Требует внимания</small>
+                </div>
+                <div class="health-card health-sentiment">
+                    <h4>Тональность</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">71%</div>
+                    <small>Средне</small>
+                </div>
+                <div class="health-card health-efficiency">
+                    <h4>Эффективность</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">27%</div>
+                    <small>Хорошо</small>
+                </div>
+                <div class="health-card health-technology">
+                    <h4>Технологии</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">82%</div>
+                    <small>Отлично</small>
+                </div>
+                <div class="health-card health-time">
+                    <h4>Оптимальное время</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">51%</div>
+                    <small>Звонки 1-5 мин</small>
+                </div>
+                <div class="health-card health-rating">
+                    <h4>Приемлемая оценка</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">81.3%</div>
+                    <small>Качество ≥6</small>
+                </div>
+            </div>
+
+            <h3>Расшифровка показателей индекса:</h3>
+
+            <table>
+                <tr>
+                    <th>Направление</th>
+                    <th>Формула расчёта</th>
+                    <th>Что означает</th>
+                    <th>Хорошие значения</th>
+                </tr>
+                <tr>
+                    <td><strong>Качество</strong></td>
+                    <td>Средняя оценка quality_overall_score</td>
+                    <td>Общее качество обслуживания по ИИ-анализу</td>
+                    <td>&gt; 7.0</td>
+                </tr>
+                <tr>
+                    <td><strong>Тональность</strong></td>
+                    <td>% звонков с positive sentiment</td>
+                    <td>Доля позитивных разговоров</td>
+                    <td>&gt; 75%</td>
+                </tr>
+                <tr>
+                    <td><strong>Эффективность</strong></td>
+                    <td>% звонков с результатом (заказы, консультации)</td>
+                    <td>Результативность работы</td>
+                    <td>&gt; 60%</td>
+                </tr>
+                <tr>
+                    <td><strong>Технологии</strong></td>
+                    <td>Средний confidence_score × 100%</td>
+                    <td>Качество распознавания речи ИИ</td>
+                    <td>&gt; 85%</td>
+                </tr>
+                <tr>
+                    <td><strong>Оптимальное время</strong></td>
+                    <td>% звонков длительностью 1-5 минут</td>
+                    <td>Доля звонков оптимальной продолжительности</td>
+                    <td>&gt; 70%</td>
+                </tr>
+                <tr>
+                    <td><strong>Приемлемая оценка</strong></td>
+                    <td>% звонков с качеством ≥ 6 баллов</td>
+                    <td>Доля звонков с удовлетворительным качеством</td>
+                    <td>&gt; 80%</td>
+                </tr>
+            </table>
+
+            <div class="warning">
+                <strong>⚠️ Общий индекс здоровья: 58%</strong><br>
+                Статус: Требует внимания | Рекомендация: Фокус на повышение качества звонков
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⏱️</span>Анализ длительности звонков</h2>
+            <p>Распределение звонков по продолжительности и корреляция с качеством:</p>
+
+            <table>
+                <tr>
+                    <th>Категория</th>
+                    <th>Длительность</th>
+                    <th>Доля звонков</th>
+                    <th>Среднее качество</th>
+                    <th>Рекомендации</th>
+                </tr>
+                <tr>
+                    <td><strong>Короткие</strong></td>
+                    <td>&lt; 3 минут</td>
+                    <td>81%</td>
+                    <td>5.2 балла</td>
+                    <td>Возможно, недостаточная работа с клиентом</td>
+                </tr>
+                <tr>
+                    <td><strong>Средние</strong></td>
+                    <td>3-7 минут</td>
+                    <td>15%</td>
+                    <td>7.1 балла</td>
+                    <td>Оптимальная продолжительность</td>
+                </tr>
+                <tr>
+                    <td><strong>Длинные</strong></td>
+                    <td>&gt; 7 минут</td>
+                    <td>3%</td>
+                    <td>8.3 балла</td>
+                    <td>Высокое качество, но возможна неэффективность</td>
+                </tr>
+            </table>
+
+            <div class="tip">
+                <strong>💡 Ключевые инсайты:</strong>
+                <ul>
+                    <li>Короткие звонки (&lt;3 мин) показывают низкое качество (5.2)</li>
+                    <li>Оптимальные звонки (5-7 мин) дают наилучшее соотношение качества и эффективности (7.1)</li>
+                    <li>Длинные звонки (&gt;7 мин) имеют высокое качество (8.3), но могут быть неэффективными</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎯</span>Стратегические инсайты</h2>
+            <p>Динамический анализ проблем и рекомендации:</p>
+
+            <div class="warning">
+                <h4>🚨 Критические проблемы:</h4>
+                <ul>
+                    <li><strong>Качество (5.9)</strong> — требуется срочное вмешательство</li>
+                    <li><strong>Решения (27.3%)</strong> — критично низкая результативность</li>
+                    <li><strong>Короткие звонки (81%)</strong> — критично высокая доля</li>
+                </ul>
+            </div>
+
+            <div class="action-list">
+                <h4>🎯 Рекомендации по улучшению:</h4>
+                <ol>
+                    <li><strong>Срочный аудит качества:</strong> Провести анализ записей звонков с низкими оценками, выявить паттерны проблем</li>
+                    <li><strong>Анализ процессов решения:</strong> Пересмотреть скрипты продаж, обучить техникам закрытия сделок</li>
+                    <li><strong>Обучение оптимизации времени:</strong> Научить сотрудников проводить более содержательные, но эффективные разговоры</li>
+                    <li><strong>Внедрение контроля качества:</strong> Регулярные проверки записей, обратная связь менеджерам</li>
+                    <li><strong>Мотивационные программы:</strong> KPI на основе качества и результативности, а не только количества</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">👥</span>Обзор эффективности менеджеров</h2>
+            <p>Индивидуальная эффективность сотрудников:</p>
+
+            <table>
+                <tr>
+                    <th>Менеджер</th>
+                    <th>Звонки</th>
+                    <th>Доля звонков</th>
+                    <th>Тональность</th>
+                    <th>Доля решений</th>
+                    <th>Ср. время</th>
+                </tr>
+                <tr>
+                    <td>Качалин Андрей Андреевич</td>
+                    <td>340</td>
+                    <td>17.9%</td>
+                    <td>81%</td>
+                    <td>31%</td>
+                    <td>1.5 мин</td>
+                </tr>
+                <tr>
+                    <td>Борисова Екатерина Александровна</td>
+                    <td>249</td>
+                    <td>13.1%</td>
+                    <td>65%</td>
+                    <td>28%</td>
+                    <td>1.5 мин</td>
+                </tr>
+            </table>
+
+            <h3>Как анализировать эффективность менеджеров:</h3>
+            <ul>
+                <li><strong>Звонки:</strong> Общая активность (больше не всегда лучше)</li>
+                <li><strong>Доля звонков:</strong> Нагрузка относительно команды</li>
+                <li><strong>Тональность:</strong> Умение работать с клиентами позитивно</li>
+                <li><strong>Доля решений:</strong> Результативность (ключевой показатель)</li>
+                <li><strong>Среднее время:</strong> Эффективность использования времени</li>
+            </ul>
+        </div>
+
+
+
+        <div class="section">
+            <h2><span class="icon">🔄</span>Как использовать дашборд</h2>
+
+            <h3>Ежедневный мониторинг:</h3>
+            <ol>
+                <li><strong>Проверяйте основные KPI</strong> в верхней части — они показывают текущее состояние</li>
+                <li><strong>Обращайте внимание на красные индикаторы</strong> "Требует внимания" — это сигналы для действий</li>
+                <li><strong>Анализируйте тренды</strong> (стрелки вверх/вниз) — понимайте, улучшается или ухудшается ситуация</li>
+            </ol>
+
+            <h3>Еженедельный анализ:</h3>
+            <ol>
+                <li><strong>Изучайте индекс здоровья бизнеса</strong> — комплексная картина эффективности</li>
+                <li><strong>Анализируйте эффективность менеджеров</strong> — выявляйте лучшие практики и проблемы</li>
+                <li><strong>Планируйте действия</strong> на основе стратегических инсайтов</li>
+            </ol>
+
+            <h3>Ежемесячный обзор:</h3>
+            <ol>
+                <li><strong>Сравнивайте результаты</strong> с предыдущими периодами</li>
+                <li><strong>Оценивайте эффективность</strong> внедрённых улучшений</li>
+                <li><strong>Планируйте долгосрочные изменения</strong> в процессах</li>
+            </ol>
+
+            <div class="tip">
+                <strong>💡 Полезные советы:</strong>
+                <ul>
+                    <li><strong>Используйте фильтры</strong> для анализа конкретных периодов или менеджеров</li>
+                    <li><strong>Drill-down:</strong> кликайте на показатели для детального анализа</li>
+                    <li><strong>Экспортируйте данные</strong> для дополнительного анализа</li>
+                    <li><strong>Регулярно обновляйте данные</strong> (автообновление каждые 30 минут)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎯</span>Практические рекомендации по улучшению показателей</h2>
+
+            <h3>🚨 Критические проблемы (требуют немедленного внимания):</h3>
+            <div class="warning">
+                <ul>
+                    <li><strong>Качество 5.9 (цель 8.0):</strong> Срочно провести аудит записей с низкими оценками</li>
+                    <li><strong>Результативность 27.3% (цель 70%):</strong> Пересмотреть скрипты продаж и техники закрытия</li>
+                    <li><strong>Короткие звонки 81%:</strong> Обучить сотрудников проводить более содержательные разговоры</li>
+                </ul>
+            </div>
+
+            <h3>📈 Конкретные действия для улучшения:</h3>
+            <div class="action-list">
+                <h4>🎯 Для повышения качества (5.9 → 8.0):</h4>
+                <ul>
+                    <li><strong>Обучение стандартам приветствия:</strong> "Добро пожаловать в [компания], меня зовут [имя], чем могу помочь?"</li>
+                    <li><strong>Техники решения проблем:</strong> "Я помогу вам найти решение", "Давайте рассмотрим варианты"</li>
+                    <li><strong>Структурирование разговора:</strong> "Итак, подведём итоги...", "Следующий шаг..."</li>
+                    <li><strong>Избегание неуверенности:</strong> Не использовать "Не знаю", "Может быть", "Наверное"</li>
+                </ul>
+            </div>
+
+            <div class="action-list">
+                <h4>😊 Для повышения удовлетворённости (71.1% → 80%):</h4>
+                <ul>
+                    <li><strong>Проявление энтузиазма:</strong> "Отлично!", "Прекрасно!", "Замечательно!"</li>
+                    <li><strong>Решение вместо отказа:</strong> "К сожалению, этого нет, но у нас есть..."</li>
+                    <li><strong>Позитивное завершение:</strong> "Спасибо за обращение!", "Буду рад помочь снова!"</li>
+                    <li><strong>Эмпатия:</strong> "Понимаю ваше беспокойство", "Я бы тоже расстроился"</li>
+                </ul>
+            </div>
+
+            <div class="action-list">
+                <h4>🎯 Для повышения результативности (27.3% → 70%):</h4>
+                <ul>
+                    <li><strong>Фокус на результат:</strong> "Что именно вас интересует?", "Какой результат вы хотите получить?"</li>
+                    <li><strong>Техники закрытия:</strong> "Готовы оформить заказ?", "Когда удобно начать?"</li>
+                    <li><strong>Альтернативы:</strong> "Если это не подходит, могу предложить..."</li>
+                    <li><strong>Конкретные действия:</strong> "Давайте оформим", "Проведём консультацию"</li>
+                </ul>
+            </div>
+
+            <div class="action-list">
+                <h4>⏱️ Для оптимизации времени (1.8 мин → 3-7 мин):</h4>
+                <ul>
+                    <li><strong>Структурирование:</strong> План разговора заранее</li>
+                    <li><strong>Целенаправленные вопросы:</strong> "Расскажите подробнее о..."</li>
+                    <li><strong>Избегание отступлений:</strong> Возвращение к теме разговора</li>
+                    <li><strong>Баланс скорости и качества:</strong> Не торопиться, но и не затягивать</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span>Ограничения и особенности</h2>
+
+            <h3>Качество данных:</h3>
+            <ul>
+                <li><strong>Confidence Score &lt; 70%:</strong> Низкое качество распознавания речи</li>
+                <li><strong>Длительность &lt; 30 сек:</strong> Возможно, технические звонки</li>
+                <li><strong>Пустое резюме:</strong> Не удалось обработать транскрипцию</li>
+            </ul>
+
+            <h3>Рекомендации по использованию:</h3>
+            <ul>
+                <li>Фильтруйте данные по confidence_score ≥ 70% для точного анализа</li>
+                <li>Группируйте короткие звонки (&lt;60 сек) отдельно</li>
+                <li>Анализируйте тональность в динамике, а не в статике</li>
+                <li>Учитывайте контекст: входящие звонки обычно имеют другую тональность</li>
+            </ul>
+
+            <h3>Техническая информация:</h3>
+            <ul>
+                <li><strong>Обновление данных:</strong> Каждые 30 минут</li>
+                <li><strong>Задержка обработки:</strong> 5-15 минут после завершения звонка</li>
+                <li><strong>Язык анализа:</strong> Только русский</li>
+                <li><strong>Источник:</strong> База данных MS SQL Server (10.1.10.15)</li>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+</html>
